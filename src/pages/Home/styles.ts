@@ -1,9 +1,40 @@
+export const dataGridStyle = {
+    "& .MuiDataGrid-main": {
+        backgroundColor: "secondary.main",
+        width: '91vw',
+        overflowX: 'scroll',
+    },
+    "& .MuiDataGrid-columnHeaderTitle": {
+        fontWeight: "bold",
+        fontSize: "17px"
+    },
+    '& .MuiDataGrid-columnHeader, & .MuiDataGrid-cell': {
+        backgroundColor: "secondary.main",
+        color: "secondary.contrastText",
+        borderBottom: '1px solid #dee2e6',
+    },
+    '& .MuiDataGrid-row': {
+        backgroundColor: "secondary.main",
+        color: "secondary.contrastText",
+        '&:hover': {
+            backgroundColor: '#f5f5f5',
+        },
+    },
+    "& .MuiDataGrid-footerContainer ": { display: 'none' },
+    
+}
+
 export const tableBox = {
     borderRadius: '20px', padding: '10px'
 }
 export const headerBox = {
-    display: 'flex', flexDirection: "row", alignItems: "center", justifyContent: "space-between", mb: '40px'
-  }
+    display: 'flex', 
+    flexDirection: {xs:"column", md: "row"}, 
+    alignItems: "center", 
+    justifyContent: {xs:"flex-start", md: "space-between"}, 
+    gap: 3,
+    mb: '40px'
+}
 export const categoryBox = {
     display: 'flex', flexDirection: "row", gap: 5, alignItems: 'center'
 }
@@ -28,6 +59,6 @@ export const cellsInTableBody = {
 }
 export const tableContainer = {
     backgroundColor: "secondary.main",
-    padding: "30px",
+    padding: {xs: "30px 0px", md: "30px"},
     borderRadius: '10px'
 }

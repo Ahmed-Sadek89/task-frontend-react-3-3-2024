@@ -9,7 +9,7 @@ const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })<{
   open?: boolean;
 }>(({ theme, open }) => ({
   flexGrow: 1,
-  padding: theme.spacing(3),
+  padding: theme.spacing(2),
   transition: theme.transitions.create('margin', {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
@@ -45,7 +45,7 @@ const Layout = () => {
             <CustomAppBar open={open} handleDrawerOpen={handleDrawerOpen} />
             <CustomDrawer open={open} anchor={'right'} display={{ xs: "block", md: "none" }} handleDrawerClose={handleDrawerClose} />
             <CustomDrawer open={open} anchor={'left'} display={{ xs: "none", md: "block" }} handleDrawerClose={handleDrawerClose} />
-            <Main>
+            <Main sx={{padding: {xs: "16px 0px", md: '16px'}}}>
                 <DrawerHeader />
                 <Outlet />
             </Main>

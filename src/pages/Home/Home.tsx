@@ -1,4 +1,4 @@
-import { TableContainer, Box, Typography, Button } from '@mui/material';
+import { TableContainer, Box, Typography, Button, Paper } from '@mui/material';
 import { addTaskBtn, categoryBox, headerBox, tableBox, tableContainer } from './styles';
 import DropDownCategory from './DropDownCategory';
 import TasksTable from './TasksTable';
@@ -8,11 +8,11 @@ import AddCardOutlinedIcon from '@mui/icons-material/AddCardOutlined';
 export default function Home() {
   const navigate = useNavigate()
   return (
-    <TableContainer sx={tableContainer}>
+    <TableContainer sx={tableContainer} component={Paper}>
       <Box boxShadow={2} sx={tableBox}>
         <Box sx={headerBox}>
           <Box sx={categoryBox}>
-            <Typography variant="h6">
+            <Typography variant="h6" color='secondary.light'>
               Sort by category:
             </Typography>
             <DropDownCategory />
