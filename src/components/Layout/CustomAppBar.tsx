@@ -1,7 +1,8 @@
-import { IconButton, Toolbar, Typography, styled } from "@mui/material";
+import { Avatar, Box, IconButton, Toolbar, Typography, styled } from "@mui/material";
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
 import { useNavigate } from "react-router-dom";
 import MenuIcon from '@mui/icons-material/Menu';
+import CustomDropDown from "./CustomDropDown";
 
 type props = {
     open: boolean,
@@ -30,20 +31,27 @@ const CustomAppBar = ({ open, drawerWidth, handleDrawerOpen }: props) => {
     }));
     const navigate = useNavigate()
     return (
-        <AppBar position="fixed" open={open} sx={{background: "secondary"}}>
-            <Toolbar >
-                <IconButton
-                    color="inherit"
-                    aria-label="open drawer"
-                    onClick={handleDrawerOpen}
-                    edge="start"
-                    sx={{ mr: 2, ...(open && { display: 'none' }) }}
-                >
-                    <MenuIcon />
-                </IconButton>
-                <Typography variant="h6" noWrap component="div" onClick={() => navigate('/')} sx={{cursor: "pointer"}}>
-                    Task Magegment
-                </Typography>
+        <AppBar position="fixed" open={open} sx={{ color: "primary.light" }}>
+            <Toolbar sx={{display: 'flex',justifyContent: "space-between", alignItems: 'center'}}>
+                <Box sx={{flex: '1', display: 'flex', alignItems: 'center'}}>
+                    <IconButton
+                        color="inherit"
+                        aria-label="open drawer"
+                        onClick={handleDrawerOpen}
+                        edge="start"
+                        sx={{ mr: 2, ...(open && { display: 'none' }) }}
+                    >
+                        <MenuIcon />
+                    </IconButton>
+                    <Typography variant="h6" noWrap component="div" onClick={() => navigate('/')} sx={{ cursor: "pointer" }}>
+                        Task Magegment
+                    </Typography>
+                </Box>
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1}}>
+                    {/* <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" /> */}
+                    <Avatar sx={{ bgcolor: 'primary.dark' }}>AS</Avatar>
+                    <CustomDropDown />
+                </Box>
             </Toolbar>
         </AppBar>
     )

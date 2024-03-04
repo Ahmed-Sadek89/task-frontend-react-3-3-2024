@@ -24,14 +24,23 @@ export const theme = createTheme({
             backgroundColor: '#fff',
           }
         }
+      },
+      MuiListItemButton: {
+        styleOverrides: {
+          root: {
+            display: "flex",
+            gap: 4,
+            alignItems: "center"
+          }
+        }
       }
     },
     palette: {
       primary: {
-        main: '#191c24',
-      },
-      secondary: {
-        main: '#000',
+        main: '#191c24', //semi-black
+        dark: "#000", // black
+        light: "#fff", // white
+        contrastText: "#6c7293" // semi-black-text
       },
     },
   });

@@ -7,6 +7,7 @@ import AddTask from "../pages/AddTask/AddTask";
 import EditTask from "../pages/EditTask/EditTask";
 import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
+import Profile from "../pages/Profile/Profile";
 
 
 const routes = createBrowserRouter([
@@ -22,6 +23,10 @@ const routes = createBrowserRouter([
             {
                 path: 'task/add',
                 element: <AddTask />
+            },
+            {
+                path: 'task/profile/:id',
+                element: <Profile />
             },
             {
                 path: 'task/:task_id',
