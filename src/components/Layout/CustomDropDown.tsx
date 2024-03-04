@@ -9,8 +9,7 @@ export default function CustomDropDown() {
 
 
     const navigate = useNavigate()
-    const handleMenuItemClick = (
-    ) => {
+    const handleMenuItemClick = () => {
         navigate('/task/profile/:id')
         setOpen(false);
     };
@@ -30,7 +29,6 @@ export default function CustomDropDown() {
         ) {
             return;
         }
-
         setOpen(false);
     };
 
@@ -39,19 +37,23 @@ export default function CustomDropDown() {
             <ButtonGroup
                 variant="text"
                 ref={anchorRef}
-                aria-label="Button group with a nested menu"
                 sx={{ display: 'flex', alignItems: 'center' }}
             >
-                <Typography variant='subtitle1' sx={{cursor: 'pointer'}} onClick={handleToggle}>Ahmed Sadek</Typography>
+                <Typography 
+                    variant='subtitle1' 
+                    sx={{cursor: 'pointer'}} 
+                    onClick={() => setOpen((prevOpen) => !prevOpen)}
+                >
+                    Ahmed Sadek
+                </Typography>
                 <Button
                     size="small"
                     aria-controls={open ? 'split-button-menu' : undefined}
                     aria-expanded={open ? 'true' : undefined}
-                    aria-label="select merge strategy"
                     aria-haspopup="menu"
                     onClick={handleToggle}
                 >
-                    <ArrowDropDownIcon  sx={{ color: '#fff' }} />
+                    <ArrowDropDownIcon  sx={{ color: 'secondary.light' }} />
                 </Button>
             </ButtonGroup>
             <Popper

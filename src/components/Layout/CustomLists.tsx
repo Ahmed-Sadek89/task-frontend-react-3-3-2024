@@ -4,20 +4,21 @@ import AssignmentOutlinedIcon from '@mui/icons-material/AssignmentOutlined';
 import PlaylistAddOutlinedIcon from '@mui/icons-material/PlaylistAddOutlined';
 import ExitToAppOutlinedIcon from '@mui/icons-material/ExitToAppOutlined';
 
-const CustomLists = () => {
+const CustomLists = ({handleDrawerClose}: {handleDrawerClose: () => void}) => {
     const navigate = useNavigate();
+    
     return (
         <>
             <Divider />
             <List>
                 <ListItem disablePadding>
-                    <ListItemButton onClick={() => navigate('/')}>
+                    <ListItemButton onClick={() => {handleDrawerClose(); navigate('/')}}>
                         <AssignmentOutlinedIcon />
                         <ListItemText primary={"Tasks"} />
                     </ListItemButton>
                 </ListItem>
                 <ListItem disablePadding>
-                    <ListItemButton onClick={() => navigate('/task/add')}>
+                    <ListItemButton onClick={() => {handleDrawerClose(); navigate('/task/add')}}>
                         <PlaylistAddOutlinedIcon />
                         <ListItemText primary={"Add tasks"} />
                     </ListItemButton>

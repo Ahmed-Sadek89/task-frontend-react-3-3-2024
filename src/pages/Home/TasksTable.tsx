@@ -11,7 +11,7 @@ const TasksTable = () => {
                 <TableRow>
                     {
                         tableHeading.map(index => (
-                            <TableCell sx={cellsInTableHead} align={index.align}>{index.title}</TableCell>
+                            <TableCell key={index.title} sx={cellsInTableHead} align={index.align}>{index.title}</TableCell>
                         ))
                     }
                 </TableRow>
@@ -19,7 +19,7 @@ const TasksTable = () => {
             <TableBody>
                 {rows.map((row) => (
                     <TableRow
-                        key={row.name}
+                        key={row.id}
                         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                     >
                         <TableCell sx={cellsInTableBody} align="left">#{row.id}</TableCell>

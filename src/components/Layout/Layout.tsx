@@ -1,77 +1,51 @@
 import * as React from 'react';
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import { Outlet } from 'react-router-dom';
-import CustomLists from './CustomLists';
 import CustomAppBar from './CustomAppBar';
-import { CssBaseline, Drawer,Box, IconButton, styled } from '@mui/material';
+import { Box, styled } from '@mui/material';
+import CustomDrawer from './CustomDrawer';
 
-const drawerWidth = 240;
 
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })<{
-    open?: boolean;
+  open?: boolean;
 }>(({ theme, open }) => ({
-    flexGrow: 1,
-    padding: theme.spacing(3),
+  flexGrow: 1,
+  padding: theme.spacing(3),
+  transition: theme.transitions.create('margin', {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.leavingScreen,
+  }),
+  ...(open && {
     transition: theme.transitions.create('margin', {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen,
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.enteringScreen,
     }),
-    marginLeft: `-${drawerWidth}px`,
-    ...(open && {
-        transition: theme.transitions.create('margin', {
-            easing: theme.transitions.easing.easeOut,
-            duration: theme.transitions.duration.enteringScreen,
-        }),
-        marginLeft: 0,
-    }),
+    marginLeft: 0,
+  }),
 }));
 
-
-
 const DrawerHeader = styled('div')(({ theme }) => ({
-    display: 'flex',
-    alignItems: 'center',
-    padding: theme.spacing(0, 1),
-    // necessary for content to be below app bar
-    ...theme.mixins.toolbar,
-    justifyContent: 'flex-end',
+  display: 'flex',
+  alignItems: 'center',
+  padding: theme.spacing(0, 1),
+  ...theme.mixins.toolbar,
+  justifyContent: 'flex-end',
 }));
 
 const Layout = () => {
-    const [open, setOpen] = React.useState(true);
-
+    const [open, setOpen] = React.useState(false);
     const handleDrawerOpen = () => {
         setOpen(true);
     };
-
     const handleDrawerClose = () => {
         setOpen(false);
     };
+    
     return (
         <Box sx={{ display: 'flex' }} >
-            <CssBaseline />
-            <CustomAppBar open={open} drawerWidth={drawerWidth} handleDrawerOpen={handleDrawerOpen} />
-            <Drawer
-                sx={{
-                    width: drawerWidth,
-                    flexShrink: 0,
-                    '& .MuiDrawer-paper': {
-                        width: drawerWidth,
-                        boxSizing: 'border-box',
-                    },
-                }}
-                variant="persistent"
-                anchor="left"
-                open={open}
-            >
-                <DrawerHeader >
-                    <IconButton onClick={handleDrawerClose} sx={{color: "#fff"}}>
-                        <ChevronLeftIcon />
-                    </IconButton>
-                </DrawerHeader>
-                <CustomLists />
-            </Drawer>
-            <Main open={open}>
+            <CustomAppBar open={open} handleDrawerOpen={handleDrawerOpen} />
+            <CustomDrawer open={open} anchor={'right'} display={{ xs: "block", md: "none" }} handleDrawerClose={handleDrawerClose} />
+            <CustomDrawer open={open} anchor={'left'} display={{ xs: "none", md: "block" }} handleDrawerClose={handleDrawerClose} />
+            <Main>
                 <DrawerHeader />
                 <Outlet />
             </Main>

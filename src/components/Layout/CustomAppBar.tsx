@@ -3,54 +3,45 @@ import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
 import { useNavigate } from "react-router-dom";
 import MenuIcon from '@mui/icons-material/Menu';
 import CustomDropDown from "./CustomDropDown";
+import { appbarStyle, toolbarLeftStyle, toolbarRightStyle, toolbarStyle } from "./CustomStyles";
 
 type props = {
     open: boolean,
-    drawerWidth: number,
     handleDrawerOpen: () => void
 }
-const CustomAppBar = ({ open, drawerWidth, handleDrawerOpen }: props) => {
+const CustomAppBar = ({ open, handleDrawerOpen }: props) => {
     interface AppBarProps extends MuiAppBarProps {
         open?: boolean;
     }
-    const AppBar = styled(MuiAppBar, {
-        shouldForwardProp: (prop) => prop !== 'open',
-    })<AppBarProps>(({ theme, open }) => ({
-        transition: theme.transitions.create(['margin', 'width'], {
-            easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.leavingScreen,
-        }),
-        ...(open && {
-            width: `calc(100% - ${drawerWidth}px)`,
-            marginLeft: `${drawerWidth}px`,
-            transition: theme.transitions.create(['margin', 'width'], {
-                easing: theme.transitions.easing.easeOut,
-                duration: theme.transitions.duration.enteringScreen,
-            }),
-        }),
-    }));
-    const navigate = useNavigate()
+    const AppBar = styled(MuiAppBar)<AppBarProps>(() => ({}));
+    const navigate = useNavigate();
+
     return (
-        <AppBar position="fixed" open={open} sx={{ color: "secondary.light", backgroundColor: "secondary.main" }}>
-            <Toolbar sx={{display: 'flex',justifyContent: "space-between", alignItems: 'center'}}>
-                <Box sx={{flex: '1', display: 'flex', alignItems: 'center'}}>
+        <AppBar position="fixed" open={open} sx={appbarStyle}>
+            <Toolbar sx={toolbarStyle}>
+                <Box sx={toolbarLeftStyle}>
                     <IconButton
                         color="inherit"
-                        aria-label="open drawer"
+                        sx={{ mr: 2, ...(open && { display: 'none' }), display: {xs:"none", md: "flex"} }}
                         onClick={handleDrawerOpen}
-                        edge="start"
-                        sx={{ mr: 2, ...(open && { display: 'none' }) }}
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Typography variant="h6" noWrap component="div" onClick={() => navigate('/')} sx={{ cursor: "pointer" }}>
+                    <Typography variant="h6" onClick={() => navigate('/')} sx={{ cursor: "pointer" }}>
                         Task Magegment
                     </Typography>
                 </Box>
-                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1}}>
+                <Box sx={toolbarRightStyle}>
                     {/* <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" /> */}
                     <Avatar sx={{ bgcolor: 'secondary.dark' }}>AS</Avatar>
                     <CustomDropDown />
+                    <IconButton
+                        color="inherit"
+                        onClick={handleDrawerOpen}
+                        sx={{ mr: 2, ...(open && { display: 'none' }), display: {xs:"block", md: "none"}}}
+                    >
+                        <MenuIcon />
+                    </IconButton>
                 </Box>
             </Toolbar>
         </AppBar>
