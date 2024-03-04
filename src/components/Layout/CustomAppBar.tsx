@@ -31,7 +31,7 @@ const CustomAppBar = ({ open, drawerWidth, handleDrawerOpen }: props) => {
     }));
     const navigate = useNavigate()
     return (
-        <AppBar position="fixed" open={open} sx={{ color: "primary.light" }}>
+        <AppBar position="fixed" open={open} sx={{ color: "secondary.light", backgroundColor: "secondary.main" }}>
             <Toolbar sx={{display: 'flex',justifyContent: "space-between", alignItems: 'center'}}>
                 <Box sx={{flex: '1', display: 'flex', alignItems: 'center'}}>
                     <IconButton
@@ -49,7 +49,7 @@ const CustomAppBar = ({ open, drawerWidth, handleDrawerOpen }: props) => {
                 </Box>
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 1}}>
                     {/* <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" /> */}
-                    <Avatar sx={{ bgcolor: 'primary.dark' }}>AS</Avatar>
+                    <Avatar sx={{ bgcolor: 'secondary.dark' }}>AS</Avatar>
                     <CustomDropDown />
                 </Box>
             </Toolbar>

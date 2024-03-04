@@ -36,7 +36,7 @@ export const theme = createTheme({
       }
     },
     palette: {
-      primary: {
+      secondary: {
         main: '#191c24', //semi-black
         dark: "#000", // black
         light: "#fff", // white
