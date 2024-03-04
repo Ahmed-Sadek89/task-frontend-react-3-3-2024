@@ -22,7 +22,7 @@ const CustomAppBar = ({ open, handleDrawerOpen }: props) => {
                 <Box sx={toolbarLeftStyle}>
                     <IconButton
                         color="inherit"
-                        sx={{ mr: 2, ...(open && { display: 'none' }), display: {xs:"none", md: "flex"} }}
+                        sx={{ mr: 2, ...(open && { display: 'none' }), display: { xs: "none", md: "flex" } }}
                         onClick={handleDrawerOpen}
                     >
                         <MenuIcon />
@@ -35,14 +35,14 @@ const CustomAppBar = ({ open, handleDrawerOpen }: props) => {
                     {/* <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" /> */}
                     <Avatar sx={{ bgcolor: 'secondary.dark' }}>AS</Avatar>
                     <CustomDropDown />
-                    <IconButton
-                        color="inherit"
-                        onClick={handleDrawerOpen}
-                        sx={{ mr: 2, ...(open && { display: 'none' }), display: {xs:"block", md: "none"}}}
-                    >
-                        <MenuIcon />
-                    </IconButton>
                 </Box>
+                <IconButton
+                    color="inherit"
+                    onClick={handleDrawerOpen}
+                    sx={{ mr: 2, ...(open && { display: 'none' }), display: { xs: "flex", md: "none" } }}
+                >
+                    <MenuIcon />
+                </IconButton>
             </Toolbar>
         </AppBar>
     )
