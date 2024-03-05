@@ -2,7 +2,7 @@ export const dataGridStyle = {
     "& .MuiDataGrid-main": {
         backgroundColor: "secondary.main",
         width: '91vw',
-        overflowX: 'scroll',
+        overflowX: {xs: "scroll", md: "auto"},
     },
     "& .MuiDataGrid-columnHeaderTitle": {
         fontWeight: "bold",
@@ -21,7 +21,6 @@ export const dataGridStyle = {
         },
     },
     "& .MuiDataGrid-footerContainer ": { display: 'none' },
-    
 }
 
 export const tableBox = {

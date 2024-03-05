@@ -4,23 +4,23 @@ import { Box, Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
 const columns: GridColDef[] = [
-  { field: 'id', headerName: 'ID', width: 70, sortable: false, },
-  { field: 'title', headerName: 'Title', width: 130, sortable: false, },
-  { field: 'description', headerName: 'Description', width: 230, sortable: false, },
+  { field: 'id', headerName: 'ID', width: 100, sortable: false, },
+  { field: 'title', headerName: 'Title', width: 160, sortable: false, },
+  { field: 'description', headerName: 'Description', width: 260, sortable: false, },
   {
     field: 'category',
     headerName: 'Category',
     sortable: true,
-    width: 130,
+    width: 160,
 
   },
   {
     field: 'date',
     headerName: 'Date',
-    width: 130,
+    width: 160,
     sortable: false,
   },
-  { field: 'Written_by', headerName: 'WrittenBy', width: 130, sortable: false, },
+  { field: 'Written_by', headerName: 'WrittenBy', width: 160, sortable: false, },
 
   {
     field: 'action',
@@ -54,7 +54,7 @@ function RenderButtonGroupCell(params: any) {
 }
 export default function DataTable() {
   return (
-    <div style={{ height: 400, width: '100%' }}>
+    <div style={{ height: 500, width: '100%' }}>
       <DataGrid
         rows={rows}
         columns={columns}

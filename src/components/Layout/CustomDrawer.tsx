@@ -10,7 +10,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
     ...theme.mixins.toolbar,
     justifyContent: 'flex-end',
 }));
-const drawerWidth = 240;
+const drawerWidth = '100%';
 
 const DrawerContent = ({ handleDrawerClose }: { handleDrawerClose: () => void }) => {
     return (
