@@ -5,4 +5,4 @@ export type Task = {
     category: string;
     date: string;
     status: string;
-}[]
+}

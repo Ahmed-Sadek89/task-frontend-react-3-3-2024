@@ -1,13 +1,16 @@
-import { Box, Button, Container, MenuItem, TextField, Typography } from '@mui/material'
+import { Box, Button, Container, Typography } from '@mui/material'
 import AddCardOutlinedIcon from '@mui/icons-material/AddCardOutlined';
 import { useState } from 'react';
 import { formatDate } from '../../assets/formateDate';
-import { boxContainer, addTaskForm, buttonBoxStyle, buttonStyle, homeTitle, selectCategoryStyle, textFieldStyle } from '../../assets/globalStyle';
+import { boxContainer, addTaskForm, buttonBoxStyle, buttonStyle, homeTitle } from '../../assets/globalStyle';
 import { checkTaskFormvalidate } from '../../assets/checkTaskFormvalidate';
 import { useLocation, useParams } from 'react-router-dom';
-import { categories, rows } from '../../assets/dummyTableData';
+import { rows } from '../../assets/dummyTableData';
 import CheckPageName from './CheckPageName';
 import TaskState from './TaskState';
+import TitleTextField from './TitleTextField';
+import DescriptionTextField from './DiscriptionTextField';
+import CategoryTextField from './CategoryTextField';
 
 const TaskForm = () => {
     const { task_id } = useParams();
@@ -41,76 +44,25 @@ const TaskForm = () => {
     return (
         <Container>
             <Box sx={boxContainer}>
-                <Typography sx={homeTitle} >Edit your new task number #{task_id}</Typography>
+                <Typography sx={homeTitle} >
+                    {myTask.length === 0 ? 'Add your new task.' : `Edit your new task number #${task_id}`}
+                </Typography>
                 <Container>
                     <Box component='form' sx={addTaskForm} onSubmit={e => handleSubmit(e)}>
-                        <Box sx={{ display: 'flex', flexDirection: "column" }}>
-                            <TextField
-                                label="Title"
-                                variant="outlined"
-                                sx={textFieldStyle}
-                                value={task.title}
-                                onChange={(e) => setTask((prev) => {
-                                    return {
-                                        ...prev,
-                                        title: e.target.value
-                                    }
-                                })}
-                            />
-                            {
-                                isTitle === false &&
-                                <Typography color='error' sx={{ fontStyle: "italic" }}>Title is required *</Typography>
-                            }
-                        </Box>
-                        <Box sx={{ display: 'flex', flexDirection: "column" }}>
-                            <TextField
-                                label="Description"
-                                multiline
-                                variant="outlined"
-                                maxRows={10}
-                                sx={textFieldStyle}
-                                value={task.description}
-                                onChange={(e) => setTask((prev) => {
-                                    return {
-                                        ...prev,
-                                        description: e.target.value
-                                    }
-                                })}
-                            />
-                            {
-                                isDescripton === false &&
-                                <Typography color='error' sx={{ fontStyle: "italic" }}>Description is required *</Typography>
-                            }
-                        </Box>
-                        <Box sx={{ display: 'flex', flexDirection: "column" }}>
-                            <TextField
-                                select
-                                variant="outlined"
-                                label="Category"
-                                defaultValue="work"
-                                sx={selectCategoryStyle}
-                                value={task.category}
-                                onChange={(e) => setTask((prev) => {
-                                    return {
-                                        ...prev,
-                                        category: e.target.value
-                                    }
-                                })}
-                            >
-                                {
-                                    categories.map((index) => (<MenuItem key={index} value={index}> {index} </MenuItem>))
-                                }
-                            </TextField>
-                            {
-                                isCategory === false &&
-                                <Typography color='error' sx={{ fontStyle: "italic" }}>Category is required *</Typography>
-                            }
-                        </Box>
-
+                        <TitleTextField task={task} setTask={setTask} isTitle={isTitle} />
+                        <DescriptionTextField task={task} setTask={setTask} isDescripton={isDescripton} />
+                        <CategoryTextField task={task} setTask={setTask} isCategory={isCategory} />
                         <Box sx={buttonBoxStyle}>
-                            <Button type='submit' variant='contained' color="success" sx={buttonStyle}>
+                            <Button
+                                type='submit'
+                                variant='contained'
+                                color={myTask.length === 0 ? "success" : "info"}
+                                sx={buttonStyle}
+                            >
                                 <AddCardOutlinedIcon />
-                                <Typography variant='body1'>Add Task</Typography>
+                                <Typography variant='body1'>
+                                    {myTask.length === 0 ? "Add " : "Edit "}Task
+                                </Typography>
                             </Button>
                         </Box>
                     </Box>

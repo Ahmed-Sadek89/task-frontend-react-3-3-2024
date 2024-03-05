@@ -2,11 +2,13 @@ import { useNavigate } from "react-router-dom";
 import { cellsInTableBody } from "./styles";
 import { Box, Button } from "@mui/material";
 import { GridColDef } from "@mui/x-data-grid";
+import { Task } from "../../Types/Tasks";
+import { useState } from "react";
 
 export const columns: GridColDef[] = [
-    { field: 'id', headerName: 'ID', width: 100, sortable: false, },
-    { field: 'title', headerName: 'Title', width: 150, sortable: false, },
-    { field: 'description', headerName: 'Description', width: 400, sortable: false, },
+    { field: 'id', headerName: 'ID', width: 50, sortable: false, },
+    { field: 'title', headerName: 'Title', width: 200, sortable: false, },
+    { field: 'description', headerName: 'Description', width: 300, sortable: false, },
     {
         field: 'category',
         headerName: 'Category',
@@ -19,24 +21,43 @@ export const columns: GridColDef[] = [
         width: 150,
         sortable: false,
     },
-    { field: 'status', headerName: 'status', width: 130, sortable: true, },
+    { 
+        field: 'status', 
+        headerName: 'status', 
+        width: 200, 
+        sortable: false, 
+        renderCell: RenderStatusCell 
+    },
     {
         field: 'action',
         headerName: 'Action',
         description: 'This column has a value getter and is not sortable.',
         sortable: false,
-        width: 400,
+        width: 300,
         renderCell: RenderButtonGroupCell
     },
 ];
 
-function RenderButtonGroupCell(params: any) {
+function RenderStatusCell(params: Task | any) {
+    const [status, setStatus] = useState<string>(params.row.status)
+    return (
+        <Button
+            sx={{ mr: 2 }}
+            variant='outlined'
+            color={status === 'pending' ?'warning' : 'success'}
+            onClick={() => setStatus((prev) => prev === 'completed' ? 'pending' : "completed")}
+        >
+            {status}
+        </Button>)
+}
+
+function RenderButtonGroupCell(params: Task | any) {
     const navigate = useNavigate()
+
     return (
         <Box sx={cellsInTableBody}>
-            <Button sx={{ mr: 2 }} variant='outlined' color='warning' >Completed</Button>
-            <Button sx={{ mr: 2 }} variant='outlined' color='primary' onClick={() => navigate(`task/${params.row.id}`)}>Edit</Button>
-            <Button variant='outlined' color='error'>Delete</Button>
+            <Button sx={{ mr: 2 }} variant='contained' color='primary' onClick={() => navigate(`task/${params.row.id}`)}>Edit</Button>
+            <Button variant='contained' color='error'>Delete</Button>
         </Box>
     );
 }

@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { Task } from '../../Types/Tasks';
 
 
-const CheckPageName = (myTask: Task) => {
+const CheckPageName = (myTask: Task[]) => {
     const location = useLocation();
     const navigate = useNavigate();
     useEffect(() => {

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Task } from '../../Types/Tasks'
 
-const TaskState = (myTask: Task) => {
+const TaskState = (myTask: Task[]) => {
     return useState({
         title: myTask[0]?.title || '',
         description: myTask[0]?.description || '',
