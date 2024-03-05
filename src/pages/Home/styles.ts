@@ -21,6 +21,10 @@ export const dataGridStyle = {
         },
     },
     "& .MuiDataGrid-footerContainer ": { display: 'none' },
+    "& .MuiDataGrid-root .MuiDataGrid-row:not(.MuiDataGrid-row--dynamicHeight)>.MuiDataGrid-cell": {
+        overflow: 'visible',
+        whiteSpace: 'nowrap',
+    }
 }
 
 export const tableBox = {

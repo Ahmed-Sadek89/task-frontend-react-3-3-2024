@@ -3,11 +3,10 @@ import {
 } from "react-router-dom";
 import Layout from "../components/Layout/Layout";
 import Home from "../pages/Home/Home";
-import AddTask from "../pages/AddTask/AddTask";
-import EditTask from "../pages/EditTask/EditTask";
 import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
 import Profile from "../pages/Profile/Profile";
+import TaskForm from "../pages/TaskForm/TaskForm";
 
 
 const routes = createBrowserRouter([
@@ -22,7 +21,7 @@ const routes = createBrowserRouter([
             },
             {
                 path: 'task/add',
-                element: <AddTask />
+                element: <TaskForm />
             },
             {
                 path: 'task/profile/:id',
@@ -30,7 +29,7 @@ const routes = createBrowserRouter([
             },
             {
                 path: 'task/:task_id',
-                element: <EditTask />
+                element: <TaskForm />
             }
         ]
     },

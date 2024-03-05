@@ -1,4 +1,4 @@
-export const boxHomeContainer = {
+export const boxContainer = {
     display: 'flex', margin: "50px auto",
     width: { md: "75%", sm: "100%" },
     flexDirection: "column",
@@ -19,11 +19,12 @@ export const addTaskForm = {
     flexDirection: "column",
     gap: 2
 }
+
+export const textFieldGroupStyle = {display: 'flex', flexDirection: "column"}
 export const textFieldStyle = {
     '& .MuiOutlinedInput-root': {
         backgroundColor: "secondary.dark",
         color: 'secondary.contrastText',
-
         '& fieldset': {
             borderColor: 'secondary.contrastText',
         },
@@ -53,37 +54,6 @@ export const selectCategoryStyle = {
         color: 'secondary.contrastText',
     },
 }
-
-export const datePickerStyle = {
-    '& .MuiButtonBase-root': {
-        color: 'secondary.contrastText',
-        zIndex: "100"
-    },
-    '& .MuiOutlinedInput-root': {
-        '& fieldset': {
-            borderColor: 'blue', // Default border color
-            backgroundColor: 'secondary.dark'
-        },
-        '&:hover fieldset': {
-            borderColor: 'secondary.light', // Border color on hover
-        },
-        '&:focus-within fieldset': {
-            borderColor: 'secondary.light', // Border color when focused
-        },
-        '&:not(:hover):not(:focus-within) fieldset': {
-            borderColor: 'secondary.contrastText', // Border color when mouse is out
-        },
-    },
-    '& .MuiInputLabel-root': {
-        // Change the styles for the label
-        color: 'secondary.contrastText',
-    },
-    '& .css-nxo287-MuiInputBase-input-MuiOutlinedInput-input': {
-        color: 'secondary.contrastText', // Change text color of the input
-        zIndex: "100"
-    },
-}
-
 
 export const buttonBoxStyle = {
     display: "flex", justifyContent: "center"
