@@ -4,6 +4,7 @@ import { Box, Button } from "@mui/material";
 import { GridColDef } from "@mui/x-data-grid";
 import { Task } from "../../Types/Tasks";
 import { useState } from "react";
+import { deleteTaskAlert } from "../../assets/sweetAlert";
 
 export const columns: GridColDef[] = [
     { field: 'id', headerName: 'ID', width: 50, sortable: false, },
@@ -21,12 +22,12 @@ export const columns: GridColDef[] = [
         width: 150,
         sortable: false,
     },
-    { 
-        field: 'status', 
-        headerName: 'status', 
-        width: 200, 
-        sortable: false, 
-        renderCell: RenderStatusCell 
+    {
+        field: 'status',
+        headerName: 'status',
+        width: 200,
+        sortable: false,
+        renderCell: RenderStatusCell
     },
     {
         field: 'action',
@@ -44,7 +45,7 @@ function RenderStatusCell(params: Task | any) {
         <Button
             sx={{ mr: 2 }}
             variant='outlined'
-            color={status === 'pending' ?'warning' : 'success'}
+            color={status === 'pending' ? 'warning' : 'success'}
             onClick={() => setStatus((prev) => prev === 'completed' ? 'pending' : "completed")}
         >
             {status}
@@ -53,11 +54,20 @@ function RenderStatusCell(params: Task | any) {
 
 function RenderButtonGroupCell(params: Task | any) {
     const navigate = useNavigate()
-
+    const handleDelete = (id: number) => {
+        deleteTaskAlert(id)
+    }
     return (
         <Box sx={cellsInTableBody}>
-            <Button sx={{ mr: 2 }} variant='contained' color='primary' onClick={() => navigate(`task/${params.row.id}`)}>Edit</Button>
-            <Button variant='contained' color='error'>Delete</Button>
+            <Button
+                sx={{ mr: 2 }}
+                variant='contained'
+                color='primary'
+                onClick={() => navigate(`task/${params.row.id}`)}
+            >Edit</Button>
+            <Button variant='contained' color='error'
+                onClick={() => handleDelete(params.row.id)}
+            >Delete</Button>
         </Box>
     );
 }
