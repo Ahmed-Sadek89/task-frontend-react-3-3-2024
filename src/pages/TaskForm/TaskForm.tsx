@@ -3,7 +3,6 @@ import AddCardOutlinedIcon from '@mui/icons-material/AddCardOutlined';
 import { useState } from 'react';
 import { formatDate } from '../../global/formateDate';
 import { boxContainer, addTaskForm, buttonBoxStyle, buttonStyle, homeTitle } from '../../global/globalStyle';
-import { validateForm } from './validationForm';
 import { useLocation, useParams } from 'react-router-dom';
 import { rows } from '../../global/dummyTableData';
 import CheckPageName from './CheckPageName';
@@ -12,6 +11,7 @@ import TitleTextField from './TitleTextField';
 import DescriptionTextField from './DiscriptionTextField';
 import CategoryTextField from './CategoryTextField';
 import { addEditTaskSuccess } from '../../global/sweetAlert';
+import { validateForm } from './validationForm';
 
 const TaskForm = () => {
     const { task_id } = useParams();

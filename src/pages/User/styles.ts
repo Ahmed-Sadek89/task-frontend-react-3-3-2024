@@ -31,5 +31,19 @@ export const ORAccount = {
     borderColor: "secondary.contrastText",
     borderRadius: "50%"
 }
+export const linkedinButton = {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: "center",
+    backgroundColor: '#0077b5',
+    color: '#ffffff',
+    padding: '10px ',
+    fontSize: '16px',
+    fontWeight: 'bold',
+    textTransform: "capitalize",
+    "&:hover": {
+        backgroundColor: '#005f86',
+    }
+}
 export const checkAcc = { display: "flex", justifyContent: "center", alignItems: "center", gap: 1 }
 export const goToRoute = { cursor: "pointer", textDecoration: "underline", color: "secondary.contrastText" }

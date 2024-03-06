@@ -13,6 +13,7 @@ export default function CustomDropDown({ handleDrawerClose }: { handleDrawerClos
     const navigate = useNavigate()
     const handleMenuItemClick = () => {
         navigate('/task/profile/:id')
+        handleDrawerClose()
         setOpen(false);
     };
     const handleSignOut = HandleSignOut({handleDrawerClose})
