@@ -3,6 +3,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import HandleSignOut from "./HandleSignOut";
+import { signOutBtnStyle } from "./CustomStyles";
 
 export default function CustomDropDown({ handleDrawerClose }: { handleDrawerClose: () => void }) {
     const [open, setOpen] = React.useState(false);
@@ -82,6 +83,7 @@ export default function CustomDropDown({ handleDrawerClose }: { handleDrawerClos
                                     </MenuItem>
                                     <MenuItem
                                         onClick={() => handleSignOut()}
+                                        sx={signOutBtnStyle}
                                     >
                                         Sign out
                                     </MenuItem>

@@ -1,35 +1,20 @@
-import { useNavigate } from 'react-router-dom';
 import { ListItemText, ListItemButton, ListItem, Divider, List, Box, Avatar } from '@mui/material';
-import AssignmentOutlinedIcon from '@mui/icons-material/AssignmentOutlined';
-import PlaylistAddOutlinedIcon from '@mui/icons-material/PlaylistAddOutlined';
 import ExitToAppOutlinedIcon from '@mui/icons-material/ExitToAppOutlined';
 import CustomDropDown from './CustomDropDown';
 import HandleSignOut from './HandleSignOut';
+import CustomListItems from './CustomListItems';
+import { signOutBtnStyle } from './CustomStyles';
 
 const CustomLists = ({ handleDrawerClose }: { handleDrawerClose: () => void }) => {
-    const navigate = useNavigate();
-    const handleSignOut = HandleSignOut({handleDrawerClose})
+    const handleSignOut = HandleSignOut({ handleDrawerClose })
     return (
         <>
             <Divider />
-            <List>
-                <ListItem disablePadding>
-                    <ListItemButton onClick={() => { handleDrawerClose(); navigate('/') }}>
-                        <AssignmentOutlinedIcon />
-                        <ListItemText primary={"Tasks"} />
-                    </ListItemButton>
-                </ListItem>
-                <ListItem disablePadding>
-                    <ListItemButton onClick={() => { handleDrawerClose(); navigate('/task/add') }}>
-                        <PlaylistAddOutlinedIcon />
-                        <ListItemText primary={"Add tasks"} />
-                    </ListItemButton>
-                </ListItem>
-            </List>
+            <CustomListItems handleDrawerClose={handleDrawerClose} />
             <Divider />
             <Box sx={{ display: { xs: 'none', md: "block" } }}>
                 <List>
-                    <ListItem disablePadding>
+                    <ListItem disablePadding sx={{ ...signOutBtnStyle, width: '134px' }}>
                         <ListItemButton onClick={() => handleSignOut()}>
                             <ExitToAppOutlinedIcon />
                             <ListItemText primary={"Sign out"} />
@@ -43,7 +28,7 @@ const CustomLists = ({ handleDrawerClose }: { handleDrawerClose: () => void }) =
                         <ListItemButton>
                             {/* <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" /> */}
                             <Avatar sx={{ bgcolor: 'secondary.dark' }}>AS</Avatar>
-                            <CustomDropDown handleDrawerClose={handleDrawerClose}/>
+                            <CustomDropDown handleDrawerClose={handleDrawerClose} />
 
                         </ListItemButton>
                     </ListItem>

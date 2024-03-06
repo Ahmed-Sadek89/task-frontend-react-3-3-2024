@@ -9,6 +9,13 @@ export const signOutAlert = () => {
         confirmButtonText: "Yes"
     })
 };
+export const addEditTaskSuccess = (text: string) => {
+    Swal.fire({
+        title: "Good job!",
+        text,
+        icon: "success"
+    });
+}
 export const deleteTaskAlert = (id: number) => {
     Swal.fire({
         title: "Are you sure?",
