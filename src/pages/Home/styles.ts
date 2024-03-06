@@ -39,7 +39,10 @@ export const headerBox = {
     mb: '40px'
 }
 export const categoryBox = {
-    display: 'flex', flexDirection: "row", gap: 5, alignItems: 'center'
+    display: 'flex', 
+    flexDirection: {xs: "column", md: 'row'},
+    gap: {xs: 0, md: 5},
+    alignItems: 'center'
 }
 
 export const addTaskBtn = {

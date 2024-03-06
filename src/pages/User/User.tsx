@@ -52,7 +52,7 @@ const User = () => {
 
     }
     return (
-        <Box sx={{ ...userContainerStyle, margin: location.pathname === '/register' ? "50px 10px" : "0px 10px" }}>
+        <Box sx={{ ...userContainerStyle, margin: location.pathname === '/register' ? "50px 10px" : "20px 10px" }}>
             <Box sx={userLayoutStyle}>
                 <Typography variant='h6' sx={pageTitle}>
                     {location.pathname === '/register' ? "Register" : "Login"}

@@ -8,16 +8,16 @@ export const userContainerStyle = {
 }
 export const userLayoutStyle = {
     backgroundColor: "secondary.main",
-    padding: "40px 20px",
+    padding: { xs: "20px", md: "40px 20px" },
     width: { xs: "100%", md: "50%" },
     display: 'flex',
     flexDirection: "column",
     justifyContent: "flex-start",
     borderRadius: '5px',
-    gap: 5
+    gap: { xs: 3, md: 5 }
 }
 export const pageTitle = { fontWeight: "bold", fontSize: "25px" }
-export const formContent = { display: 'flex', flexDirection: "column", gap: 3 }
+export const formContent = { display: 'flex', flexDirection: "column", gap: { xs: 1, md: 3 } }
 export const userTextField = {
     width: '100%',
     ...textFieldStyle
@@ -45,5 +45,11 @@ export const linkedinButton = {
         backgroundColor: '#005f86',
     }
 }
-export const checkAcc = { display: "flex", justifyContent: "center", alignItems: "center", gap: 1 }
+export const checkAcc = {
+    display: "flex",
+    flexDirection: { xs: "column", md: 'row' },
+    justifyContent: "center",
+    alignItems: "center",
+    gap: { xs: 0, md: 1 },
+}
 export const goToRoute = { cursor: "pointer", textDecoration: "underline", color: "secondary.contrastText" }
