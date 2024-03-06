@@ -1,18 +1,15 @@
 import { Box, TextField, Typography } from '@mui/material'
 import { textFieldStyle } from '../../global/globalStyle'
 import React from 'react'
+import { taskInput } from '../../Types/taskInput'
 
-type taskInput = {
-    title: string,
-    description: string,
-    category: string;
-}
+
 type Props = {
     task: taskInput,
     setTask: React.Dispatch<React.SetStateAction<taskInput>>,
-    isTitle: boolean
+    titleErrors: string
 }
-const TitleTextField = ({task, setTask, isTitle}: Props) => {
+const TitleTextField = ({task, setTask, titleErrors}: Props) => {
     return (
         <Box sx={{ display: 'flex', flexDirection: "column" }}>
             <TextField
@@ -28,8 +25,8 @@ const TitleTextField = ({task, setTask, isTitle}: Props) => {
                 })}
             />
             {
-                isTitle === false &&
-                <Typography color='error' sx={{ fontStyle: "italic" }}>Title is required *</Typography>
+                titleErrors !== '' &&
+                <Typography color='error' sx={{ fontStyle: "italic" }}>{titleErrors}*</Typography>
             }
         </Box>
     )

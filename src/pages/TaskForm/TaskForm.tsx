@@ -3,7 +3,7 @@ import AddCardOutlinedIcon from '@mui/icons-material/AddCardOutlined';
 import { useState } from 'react';
 import { formatDate } from '../../global/formateDate';
 import { boxContainer, addTaskForm, buttonBoxStyle, buttonStyle, homeTitle } from '../../global/globalStyle';
-import { checkTaskFormvalidate } from './checkTaskFormvalidate';
+import { validateForm } from './validationForm';
 import { useLocation, useParams } from 'react-router-dom';
 import { rows } from '../../global/dummyTableData';
 import CheckPageName from './CheckPageName';
@@ -11,6 +11,7 @@ import TaskState from './TaskState';
 import TitleTextField from './TitleTextField';
 import DescriptionTextField from './DiscriptionTextField';
 import CategoryTextField from './CategoryTextField';
+import { addEditTaskSuccess } from '../../global/sweetAlert';
 
 const TaskForm = () => {
     const { task_id } = useParams();
@@ -19,28 +20,28 @@ const TaskForm = () => {
 
     CheckPageName(myTask)
     const [task, setTask] = TaskState(myTask)
-    const [isTitle, setIsTitle] = useState(true)
-    const [isDescripton, setIsDescripton] = useState(true)
-    const [isCategory, setIsCategory] = useState(true)
+    const [errors, setErrors] = useState({
+        title: '',
+        description: '',
+        category: ''
+    });
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault()
-        checkTaskFormvalidate(task, { setIsTitle, setIsDescripton, setIsCategory })
-        const taskState = {
-            id: 1,
-            ...task,
-            date: formatDate(new Date()),
-            status: "pending",
-            owner: "Ahmed sadek"
-        }
-        if (isCategory === true && isTitle === true && isDescripton === true) {
-            if (location.pathname !== '/task/add') {
-                console.log("task updated successfully ", taskState)
-            } else {
-                console.log("task added successfully ", taskState)
+        e.preventDefault();
+        if (validateForm({task, setErrors})) {
+            console.log({id: 1, ...task, date: formatDate(new Date())})
+            if (location.pathname === '/task/add') {
+                addEditTaskSuccess("new task added successfully")
+            } else if (location.pathname === `/task/${task_id}`) {
+                addEditTaskSuccess("this task updated successfully")
             }
+            setTask({
+                title: "", description: "", category: ""
+            })
+        } else {
+            console.log('task Form validation failed');
         }
-    }
+    };
     return (
         <Container>
             <Box sx={boxContainer}>
@@ -49,9 +50,9 @@ const TaskForm = () => {
                 </Typography>
                 <Container>
                     <Box component='form' sx={addTaskForm} onSubmit={e => handleSubmit(e)}>
-                        <TitleTextField task={task} setTask={setTask} isTitle={isTitle} />
-                        <DescriptionTextField task={task} setTask={setTask} isDescripton={isDescripton} />
-                        <CategoryTextField task={task} setTask={setTask} isCategory={isCategory} />
+                        <TitleTextField task={task} setTask={setTask} titleErrors={errors.title} />
+                        <DescriptionTextField task={task} setTask={setTask} descriptionErrors={errors.description} />
+                        <CategoryTextField task={task} setTask={setTask} categoryErrors={errors.category} />
                         <Box sx={buttonBoxStyle}>
                             <Button
                                 type='submit'
@@ -68,7 +69,6 @@ const TaskForm = () => {
                     </Box>
                 </Container>
             </Box>
-
         </Container>
     )
 }

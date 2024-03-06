@@ -2,18 +2,15 @@ import { Box, MenuItem, TextField, Typography } from '@mui/material'
 import { selectCategoryStyle } from '../../global/globalStyle'
 import React from 'react'
 import { categories } from '../../global/dummyTableData';
+import { taskInput } from '../../Types/taskInput';
 
-type taskInput = {
-    title: string,
-    description: string,
-    category: string;
-}
+
 type Props = {
     task: taskInput,
     setTask: React.Dispatch<React.SetStateAction<taskInput>>,
-    isCategory: boolean
+    categoryErrors: string
 }
-const CategoryTextField = ({ task, setTask, isCategory }: Props) => {
+const CategoryTextField = ({ task, setTask, categoryErrors }: Props) => {
     return (
         <Box sx={{ display: 'flex', flexDirection: "column" }}>
             <TextField
@@ -35,8 +32,8 @@ const CategoryTextField = ({ task, setTask, isCategory }: Props) => {
                 }
             </TextField>
             {
-                isCategory === false &&
-                <Typography color='error' sx={{ fontStyle: "italic" }}>Category is required *</Typography>
+                categoryErrors !== '' &&
+                <Typography color='error' sx={{ fontStyle: "italic" }}>{categoryErrors} *</Typography>
             }
         </Box>
     )
