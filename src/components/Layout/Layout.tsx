@@ -32,25 +32,25 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 }));
 
 const Layout = () => {
-    const [open, setOpen] = React.useState(false);
-    const handleDrawerOpen = () => {
-        setOpen(true);
-    };
-    const handleDrawerClose = () => {
-        setOpen(false);
-    };
-    
-    return (
-        <Box sx={{ display: 'flex' }} >
-            <CustomAppBar open={open} handleDrawerOpen={handleDrawerOpen} />
-            <CustomDrawer open={open} anchor={'right'} display={{ xs: "block", md: "none" }} handleDrawerClose={handleDrawerClose} />
-            <CustomDrawer open={open} anchor={'left'} display={{ xs: "none", md: "block" }} handleDrawerClose={handleDrawerClose} />
-            <Main sx={{padding: {xs: "16px 0px", md: '16px'}}}>
-                <DrawerHeader />
-                <Outlet />
-            </Main>
-        </Box>
-    );
+  const [open, setOpen] = React.useState(false);
+  const handleDrawerOpen = () => {
+    setOpen(true);
+  };
+  const handleDrawerClose = () => {
+    setOpen(false);
+  };
+
+  return (
+    <Box sx={{ display: 'flex' }} >
+      <CustomAppBar open={open} handleDrawerOpen={handleDrawerOpen} handleDrawerClose={handleDrawerClose} />
+      <CustomDrawer open={open} anchor={'right'} display={{ xs: "block", md: "none" }} handleDrawerClose={handleDrawerClose} />
+      <CustomDrawer open={open} anchor={'left'} display={{ xs: "none", md: "block" }} handleDrawerClose={handleDrawerClose} />
+      <Main sx={{ padding: { xs: "16px 0px", md: '16px' } }}>
+        <DrawerHeader />
+        <Outlet />
+      </Main>
+    </Box>
+  );
 }
 
 export default Layout

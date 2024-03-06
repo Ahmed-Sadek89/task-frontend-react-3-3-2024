@@ -4,7 +4,7 @@ import { Box, Button } from "@mui/material";
 import { GridColDef } from "@mui/x-data-grid";
 import { Task } from "../../Types/Tasks";
 import { useState } from "react";
-import { deleteTaskAlert } from "../../assets/sweetAlert";
+import { deleteTaskAlert } from "../../global/sweetAlert";
 
 export const columns: GridColDef[] = [
     { field: 'id', headerName: 'ID', width: 50, sortable: false, },

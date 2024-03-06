@@ -2,8 +2,9 @@ import { Button, ButtonGroup, ClickAwayListener, Grow, MenuItem, MenuList, Paper
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import HandleSignOut from "./HandleSignOut";
 
-export default function CustomDropDown() {
+export default function CustomDropDown({ handleDrawerClose }: { handleDrawerClose: () => void }) {
     const [open, setOpen] = React.useState(false);
     const anchorRef = React.useRef<HTMLDivElement>(null);
 
@@ -13,10 +14,7 @@ export default function CustomDropDown() {
         navigate('/task/profile/:id')
         setOpen(false);
     };
-    const signout = (
-    ) => {
-        console.log("signout")
-    };
+    const handleSignOut = HandleSignOut({handleDrawerClose})
 
     const handleToggle = () => {
         setOpen((prevOpen) => !prevOpen);
@@ -39,9 +37,9 @@ export default function CustomDropDown() {
                 ref={anchorRef}
                 sx={{ display: 'flex', alignItems: 'center' }}
             >
-                <Typography 
-                    variant='subtitle1' 
-                    sx={{cursor: 'pointer'}} 
+                <Typography
+                    variant='subtitle1'
+                    sx={{ cursor: 'pointer' }}
                     onClick={() => setOpen((prevOpen) => !prevOpen)}
                 >
                     Ahmed Sadek
@@ -53,7 +51,7 @@ export default function CustomDropDown() {
                     aria-haspopup="menu"
                     onClick={handleToggle}
                 >
-                    <ArrowDropDownIcon  sx={{ color: 'secondary.light' }} />
+                    <ArrowDropDownIcon sx={{ color: 'secondary.light' }} />
                 </Button>
             </ButtonGroup>
             <Popper
@@ -83,7 +81,7 @@ export default function CustomDropDown() {
                                         Profile
                                     </MenuItem>
                                     <MenuItem
-                                        onClick={() => signout()}
+                                        onClick={() => handleSignOut()}
                                     >
                                         Sign out
                                     </MenuItem>

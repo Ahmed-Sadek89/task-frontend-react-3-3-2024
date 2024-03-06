@@ -4,10 +4,11 @@ import AssignmentOutlinedIcon from '@mui/icons-material/AssignmentOutlined';
 import PlaylistAddOutlinedIcon from '@mui/icons-material/PlaylistAddOutlined';
 import ExitToAppOutlinedIcon from '@mui/icons-material/ExitToAppOutlined';
 import CustomDropDown from './CustomDropDown';
+import HandleSignOut from './HandleSignOut';
 
 const CustomLists = ({ handleDrawerClose }: { handleDrawerClose: () => void }) => {
     const navigate = useNavigate();
-
+    const handleSignOut = HandleSignOut({handleDrawerClose})
     return (
         <>
             <Divider />
@@ -29,7 +30,7 @@ const CustomLists = ({ handleDrawerClose }: { handleDrawerClose: () => void }) =
             <Box sx={{ display: { xs: 'none', md: "block" } }}>
                 <List>
                     <ListItem disablePadding>
-                        <ListItemButton>
+                        <ListItemButton onClick={() => handleSignOut()}>
                             <ExitToAppOutlinedIcon />
                             <ListItemText primary={"Sign out"} />
                         </ListItemButton>
@@ -42,7 +43,7 @@ const CustomLists = ({ handleDrawerClose }: { handleDrawerClose: () => void }) =
                         <ListItemButton>
                             {/* <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" /> */}
                             <Avatar sx={{ bgcolor: 'secondary.dark' }}>AS</Avatar>
-                            <CustomDropDown />
+                            <CustomDropDown handleDrawerClose={handleDrawerClose}/>
 
                         </ListItemButton>
                     </ListItem>

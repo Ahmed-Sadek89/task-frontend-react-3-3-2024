@@ -1,11 +1,11 @@
 import { Box, Button, Container, Typography } from '@mui/material'
 import AddCardOutlinedIcon from '@mui/icons-material/AddCardOutlined';
 import { useState } from 'react';
-import { formatDate } from '../../assets/formateDate';
-import { boxContainer, addTaskForm, buttonBoxStyle, buttonStyle, homeTitle } from '../../assets/globalStyle';
-import { checkTaskFormvalidate } from '../../assets/checkTaskFormvalidate';
+import { formatDate } from '../../global/formateDate';
+import { boxContainer, addTaskForm, buttonBoxStyle, buttonStyle, homeTitle } from '../../global/globalStyle';
+import { checkTaskFormvalidate } from '../../global/checkTaskFormvalidate';
 import { useLocation, useParams } from 'react-router-dom';
-import { rows } from '../../assets/dummyTableData';
+import { rows } from '../../global/dummyTableData';
 import CheckPageName from './CheckPageName';
 import TaskState from './TaskState';
 import TitleTextField from './TitleTextField';

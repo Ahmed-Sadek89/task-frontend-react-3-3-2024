@@ -7,9 +7,10 @@ import { appbarStyle, toolbarLeftStyle, toolbarRightStyle, toolbarStyle } from "
 
 type props = {
     open: boolean,
-    handleDrawerOpen: () => void
+    handleDrawerOpen: () => void,
+    handleDrawerClose: ()=> void
 }
-const CustomAppBar = ({ open, handleDrawerOpen }: props) => {
+const CustomAppBar = ({ open, handleDrawerOpen, handleDrawerClose }: props) => {
     interface AppBarProps extends MuiAppBarProps {
         open?: boolean;
     }
@@ -34,7 +35,7 @@ const CustomAppBar = ({ open, handleDrawerOpen }: props) => {
                 <Box sx={toolbarRightStyle}>
                     {/* <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" /> */}
                     <Avatar sx={{ bgcolor: 'secondary.dark' }}>AS</Avatar>
-                    <CustomDropDown />
+                    <CustomDropDown handleDrawerClose={handleDrawerClose}/>
                 </Box>
                 <IconButton
                     color="inherit"

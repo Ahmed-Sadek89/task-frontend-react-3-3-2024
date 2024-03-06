@@ -1,7 +1,7 @@
 import { Box, MenuItem, TextField, Typography } from '@mui/material'
-import { selectCategoryStyle } from '../../assets/globalStyle'
+import { selectCategoryStyle } from '../../global/globalStyle'
 import React from 'react'
-import { categories } from '../../assets/dummyTableData';
+import { categories } from '../../global/dummyTableData';
 
 type taskInput = {
     title: string,

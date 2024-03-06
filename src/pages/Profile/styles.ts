@@ -1,4 +1,4 @@
-import { boxContainer } from "../../assets/globalStyle";
+import { boxContainer } from "../../global/globalStyle";
 
 export const profileContainerStyle = {
     ...boxContainer,
