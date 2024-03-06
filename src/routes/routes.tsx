@@ -3,10 +3,9 @@ import {
 } from "react-router-dom";
 import Layout from "../components/Layout/Layout";
 import Home from "../pages/Home/Home";
-import Login from "../pages/Login/Login";
-import Register from "../pages/Register/Register";
 import Profile from "../pages/Profile/Profile";
 import TaskForm from "../pages/TaskForm/TaskForm";
+import User from "../pages/User/User";
 
 
 const routes = createBrowserRouter([
@@ -35,11 +34,11 @@ const routes = createBrowserRouter([
     },
     {
         path: '/login',
-        element: <Login />
+        element: <User />
     },
     {
         path: '/register',
-        element: <Register />
+        element: <User />
     },
 ]);
 
