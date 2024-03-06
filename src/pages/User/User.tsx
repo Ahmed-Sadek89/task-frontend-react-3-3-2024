@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { ORAccount, checkAcc, formButtonContent, formContent, goToRoute, linkedInContent, pageTitle, userContainerStyle, userLayoutStyle, userTextField } from './styles'
 import { Visibility, VisibilityOff } from '@mui/icons-material'
 import React from 'react'
+import { userDataType } from '../../Types/userData'
 
 const User = () => {
     const location = useLocation()
@@ -16,7 +17,12 @@ const User = () => {
             setShowPassword((show) => !show)
             : setShowConfirmPassword((show) => !show);
     }
-
+    const [userData, setUserData] = React.useState<userDataType>({
+        username: '',
+        email: "",
+        password: "",
+        confirmPassword: ""
+    })
 
     return (
         <Box sx={{ ...userContainerStyle, margin: location.pathname === '/register' ? "50px 10px" : "0px 10px" }}>
