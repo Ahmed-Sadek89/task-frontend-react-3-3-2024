@@ -1,4 +1,4 @@
-import { Box, Button, Typography } from '@mui/material'
+import { Box, Button, Container, Typography } from '@mui/material'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { formButtonContent, formContent, pageTitle, userContainerStyle, userLayoutStyle } from './styles'
 import React, { useCallback } from 'react'
@@ -55,49 +55,51 @@ const User = () => {
         <Box sx={{ ...userContainerStyle, margin: location.pathname === '/register' ? "50px 10px" : "0px 10px" }}>
             <Box sx={userLayoutStyle}>
                 <Typography variant='h6' sx={pageTitle}>
-                    {location.pathname === '/register' ? "Register": "Login"}
+                    {location.pathname === '/register' ? "Register" : "Login"}
                 </Typography>
-                <Box component='form' sx={formContent} onSubmit={handleUserSubmit}>
-                    {
-                        location.pathname === '/register' &&
-                        <UsernameTextField 
-                            name='username' 
-                            value={userDataInput.username} 
-                            handleUserInputChange={handleUserInputChange} 
-                            errors={errors} 
+                <Container>
+                    <Box component='form' sx={formContent} onSubmit={handleUserSubmit}>
+                        {
+                            location.pathname === '/register' &&
+                            <UsernameTextField
+                                name='username'
+                                value={userDataInput.username}
+                                handleUserInputChange={handleUserInputChange}
+                                errors={errors}
+                            />
+                        }
+                        <UsernameTextField
+                            name='email'
+                            value={userDataInput.email}
+                            handleUserInputChange={handleUserInputChange}
+                            errors={errors}
                         />
-                    }
-                    <UsernameTextField 
-                        name='email' 
-                        value={userDataInput.email} 
-                        handleUserInputChange={handleUserInputChange} 
-                        errors={errors} 
-                    />
-                    <PasswordTextField 
-                        name='password' 
-                        value={userDataInput.password} 
-                        handleUserInputChange={handleUserInputChange} 
-                        showPassword={showPassword} 
-                        handleClickShowPassword={handleClickShowPassword} 
-                        errors={errors} 
-                    />
-                    {
-                        location.pathname === '/register' &&
-                        <PasswordTextField 
-                            name='confirmPassword' 
-                            value={userDataInput.confirmPassword} 
-                            handleUserInputChange={handleUserInputChange} 
-                            showPassword={showConfirmPassword} 
-                            handleClickShowPassword={handleClickShowPassword} 
-                            errors={errors} 
+                        <PasswordTextField
+                            name='password'
+                            value={userDataInput.password}
+                            handleUserInputChange={handleUserInputChange}
+                            showPassword={showPassword}
+                            handleClickShowPassword={handleClickShowPassword}
+                            errors={errors}
                         />
-                    }
-                    <Box sx={formButtonContent}>
-                        <Button type='submit' color='success' variant="contained">
-                            {location.pathname === '/register' ? "Register" : "Login"}
-                        </Button>
+                        {
+                            location.pathname === '/register' &&
+                            <PasswordTextField
+                                name='confirmPassword'
+                                value={userDataInput.confirmPassword}
+                                handleUserInputChange={handleUserInputChange}
+                                showPassword={showConfirmPassword}
+                                handleClickShowPassword={handleClickShowPassword}
+                                errors={errors}
+                            />
+                        }
+                        <Box sx={formButtonContent}>
+                            <Button type='submit' color='success' variant="contained">
+                                {location.pathname === '/register' ? "Register" : "Login"}
+                            </Button>
+                        </Box>
                     </Box>
-                </Box>
+                </Container>
                 <LinkedInLayout />
                 <CheckRouteName />
             </Box>
