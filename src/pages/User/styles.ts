@@ -24,6 +24,8 @@ export const userTextField = {
 
 }
 export const formButtonContent = { display: "flex", justifyContent: "center" }
+
+export const fetchDataTextError = { textAlign: 'center', marginTop: "10px", fontStyle: "italic" }
 export const linkedInContent = { display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column", gap: 1 }
 export const ORAccount = {
     backgroundColor: "secondary.dark", padding: "10px",

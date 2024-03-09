@@ -11,11 +11,11 @@ const initialState: userState = {
     data: null
 }
 
-export const user_register = createAsyncThunk<userOutput, userRegister>(
-    "users/register",
+export const user_login = createAsyncThunk<userOutput, userRegister>(
+    "users/login",
     async (payload, { rejectWithValue }) => {
         try {
-            const response = await axios.post(`${api_link}/user/register`, payload)
+            const response = await axios.post(`${api_link}/user/login`, payload)
             return response.data
         } catch (error: any) {
             return rejectWithValue(error.response.data);
@@ -23,23 +23,23 @@ export const user_register = createAsyncThunk<userOutput, userRegister>(
     }
 );
 
-export const user_register_slice = createSlice({
-    name: "users/register",
+export const user_login_slice = createSlice({
+    name: "users/login",
     initialState,
     reducers: {},
     extraReducers: (builder) => {
         builder
-            .addCase(user_register.pending, (state) => {
+            .addCase(user_login.pending, (state) => {
                 state.loading = true;
                 state.error = false;
                 state.data = null
             })
-            .addCase(user_register.fulfilled, (state, { payload }) => {
+            .addCase(user_login.fulfilled, (state, { payload }) => {
                 state.data = payload
                 state.loading = false;
                 state.error = false;
             })
-            .addCase(user_register.rejected, (state, action) => {
+            .addCase(user_login.rejected, (state, action) => {
                 const payload = action.payload as userOutput;
                 state.data = payload;
                 state.loading = false;
@@ -48,4 +48,4 @@ export const user_register_slice = createSlice({
     },
 });
 
-export default user_register_slice.reducer;
+export default user_login_slice.reducer;

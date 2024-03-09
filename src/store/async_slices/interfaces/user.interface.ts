@@ -10,10 +10,13 @@ export type userOutput = {
     email: string,
     URLImage: string,
     created_at: string,
+
+    message?: string| null,
+    authorization?: string| null
 }
 
 export type userRegister = {
-    username: string,
+    username?: string,
     email: string,
     password: string,
     URLImage?: string

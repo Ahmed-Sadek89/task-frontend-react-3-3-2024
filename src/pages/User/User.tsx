@@ -1,6 +1,6 @@
 import { Box, Button, Container, Typography } from '@mui/material'
-import { useLocation, useNavigate } from 'react-router-dom'
-import { formButtonContent, formContent, pageTitle, userContainerStyle, userLayoutStyle } from './styles'
+import { useLocation } from 'react-router-dom'
+import { fetchDataTextError, formButtonContent, formContent, pageTitle, userContainerStyle, userLayoutStyle } from './styles'
 import React, { useCallback } from 'react'
 import { userDataInput } from '../../Types/userDataInput'
 import { checkRegisterValidation } from './checkRegisterValidation'
@@ -8,10 +8,18 @@ import UsernameTextField from './NormalTextField'
 import PasswordTextField from './PasswordTextField'
 import LinkedInLayout from './LinkedInLayout'
 import CheckRouteName from './CheckRouteName'
+import { useSelector } from 'react-redux'
+import { rootState } from '../../store/store'
+import SetLogin from './SetLogin'
+import SetRegister from './SetRegister'
+import CheckAuth from '../../global/CheckAuth'
+
 
 const User = () => {
+    CheckAuth() // if user has token -> navigate to :/
     const location = useLocation();
-    const navigate = useNavigate()
+    const user_register_state = useSelector((state: rootState) => state.user_register)
+    const user_login_state = useSelector((state: rootState) => state.userLogin)
     const [showPassword, setShowPassword] = React.useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = React.useState(false);
     const handleClickShowPassword = (inputType: 'password' | 'confirmPassword') => {
@@ -36,20 +44,20 @@ const User = () => {
         })
     }
     const isValidRegistration = useCallback(() => checkRegisterValidation({ pathname: location.pathname, userDataInput, setErrors }), [userDataInput, location.pathname, setErrors])
-    const handleUserSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+
+    const handleRegister = SetRegister({ userDataInput, setUserDataInput })
+    const handleLogin = SetLogin({ userDataInput, setUserDataInput });
+    const handleUserSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         if (isValidRegistration()) {
             if (location.pathname === '/register') {
-                console.log("success registration")
+                await handleRegister()
             } else {
-                console.log("success login")
+                await handleLogin()
             }
-            navigate('/')
-            setUserDataInput({ username: "", email: "", password: "", confirmPassword: "" })
         } else {
             console.log("invalid registration", errors)
         }
-
     }
     return (
         <Box sx={{ ...userContainerStyle, margin: location.pathname === '/register' ? "50px 10px" : "20px 10px" }}>
@@ -94,11 +102,29 @@ const User = () => {
                             />
                         }
                         <Box sx={formButtonContent}>
-                            <Button type='submit' color='success' variant="contained">
+                            <Button
+                                type='submit'
+                                color='success'
+                                variant="contained"
+                                disabled={
+                                    user_register_state.loading === true || user_login_state.loading === true ?
+                                        true :
+                                        false
+                                }
+                            >
                                 {location.pathname === '/register' ? "Register" : "Login"}
                             </Button>
                         </Box>
                     </Box>
+                    {
+                        (user_register_state.loading === true || user_login_state.loading === true) &&
+                        <Typography
+                            sx={fetchDataTextError}
+                            color="error"
+                        >
+                            {user_register_state.data?.message || user_login_state.data?.message}
+                        </Typography>
+                    }
                 </Container>
                 <LinkedInLayout />
                 <CheckRouteName />
