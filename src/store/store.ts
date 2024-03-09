@@ -1,11 +1,18 @@
 import { configureStore } from "@reduxjs/toolkit";
 import user_register_slice from "./async_slices/slices/user/register.user.slice";
 import user_login_slice from "./async_slices/slices/user/login.user.slice";
+import taskByUserIdTaskSlice from "./async_slices/slices/task/taskByUserId.task.slice";
+import updateByIdTaskSlice from "./async_slices/slices/task/updateById.task.slice";
+import getTaskByIdTaskSlice from "./async_slices/slices/task/getTaskById.task.slice";
 
 export const store = configureStore({
     reducer: {
         user_register: user_register_slice,
-        userLogin: user_login_slice
+        userLogin: user_login_slice,
+
+        getTaskByUserId: taskByUserIdTaskSlice,
+        updateTaskById: updateByIdTaskSlice,
+        getTaskById: getTaskByIdTaskSlice,
     }
 })
 

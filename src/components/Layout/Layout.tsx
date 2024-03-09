@@ -4,6 +4,8 @@ import CustomAppBar from './CustomAppBar';
 import { Box, styled } from '@mui/material';
 import CustomDrawer from './CustomDrawer';
 import CheckUserIsNotAuth from '../../global/CheckUserIsNotAuth';
+import { getDecodedToken } from '../../global/getDecodedToken';
+import Cookies from 'js-cookie';
 
 
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })<{
@@ -41,16 +43,22 @@ const Layout = () => {
   const handleDrawerClose = () => {
     setOpen(false);
   };
-
+  const token = Cookies.get('authorization') || ''
+  let decoded = getDecodedToken(token)
   return (
     <Box sx={{ display: 'flex' }} >
-      <CustomAppBar open={open} handleDrawerOpen={handleDrawerOpen} handleDrawerClose={handleDrawerClose} />
-      <CustomDrawer open={open} anchor={'right'} display={{ xs: "block", md: "none" }} handleDrawerClose={handleDrawerClose} />
-      <CustomDrawer open={open} anchor={'left'} display={{ xs: "none", md: "block" }} handleDrawerClose={handleDrawerClose} />
-      <Main sx={{ padding: { xs: "16px 0px", md: '16px' } }}>
-        <DrawerHeader />
-        <Outlet />
-      </Main>
+      {
+        decoded?.user?.id !== 0 &&
+        <>
+          <CustomAppBar open={open} handleDrawerOpen={handleDrawerOpen} handleDrawerClose={handleDrawerClose} />
+          <CustomDrawer open={open} anchor={'right'} display={{ xs: "block", md: "none" }} handleDrawerClose={handleDrawerClose} />
+          <CustomDrawer open={open} anchor={'left'} display={{ xs: "none", md: "block" }} handleDrawerClose={handleDrawerClose} />
+          <Main sx={{ padding: { xs: "16px 0px", md: '16px' } }}>
+            <DrawerHeader />
+            <Outlet />
+          </Main>
+        </>
+      }
     </Box>
   );
 }

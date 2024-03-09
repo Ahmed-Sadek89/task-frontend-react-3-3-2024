@@ -38,12 +38,7 @@ export const headerBox = {
     gap: 3,
     mb: '40px'
 }
-export const categoryBox = {
-    display: 'flex', 
-    flexDirection: {xs: "column", md: 'row'},
-    gap: {xs: 0, md: 5},
-    alignItems: 'center'
-}
+
 
 export const addTaskBtn = {
     display: "flex",

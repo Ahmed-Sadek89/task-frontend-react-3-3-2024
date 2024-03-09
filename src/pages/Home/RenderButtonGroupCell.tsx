@@ -5,6 +5,9 @@ import { GridColDef } from "@mui/x-data-grid";
 import { Task } from "../../Types/Tasks";
 import { useState } from "react";
 import { deleteTaskAlert } from "../../global/sweetAlert";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../../store/store";
+import { updateTaskById } from "../../store/async_slices/slices/task/updateById.task.slice";
 
 export const columns: GridColDef[] = [
     { field: 'id', headerName: 'ID', width: 50, sortable: false, },
@@ -40,13 +43,21 @@ export const columns: GridColDef[] = [
 ];
 
 function RenderStatusCell(params: Task | any) {
-    const [status, setStatus] = useState<string>(params.row.status)
+    const [status, setStatus] = useState<string>(params.row.status);
+    const dispatch = useDispatch<AppDispatch>();
+    
+    const handleUpdateTaskState = async () => {
+        setStatus((prev) => prev === 'COMPLETED' ? 'PENDING' : "COMPLETED")
+        await dispatch(updateTaskById({
+            id: params.row.id, status: params.row.status === 'COMPLETED' ? 'PENDING' : "COMPLETED",
+        }))
+    }
     return (
         <Button
             sx={{ mr: 2 }}
             variant='outlined'
-            color={status === 'pending' ? 'warning' : 'success'}
-            onClick={() => setStatus((prev) => prev === 'completed' ? 'pending' : "completed")}
+            color={status === 'PENDING' ? 'warning' : 'success'}
+            onClick={handleUpdateTaskState}
         >
             {status}
         </Button>)

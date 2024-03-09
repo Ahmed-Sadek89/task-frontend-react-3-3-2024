@@ -1,4 +1,4 @@
-export const categories = ['work', 'personal', 'shopping', 'others'];
+export const categories = ['WORK', 'PERSONAL', 'SHOPPING', 'OTHRS'];
 export const rows = [
     { id: 1, title: 'this is title number 1', description: 'this is description number 1', category: 'others', date: "1/2/2022", status: "pending" },
     { id: 2, title: 'this is title number 2', description: 'this is description number 2', category: 'others', date: "1/2/2022", status: "pending" },

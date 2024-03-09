@@ -20,7 +20,7 @@ const CustomAppBar = ({ open, handleDrawerOpen, handleDrawerClose }: props) => {
     const navigate = useNavigate();
     const token = Cookies.get('authorization') || ''
     let decoded = getDecodedToken(token);
-    const imageNameArray = decoded?.user.username.split(" ")
+    const imageNameArray = decoded?.user?.username.split(" ")
     const username = (imageNameArray[0][0] + imageNameArray[1][0]).toUpperCase();
     return (
         <AppBar position="fixed" open={open} sx={appbarStyle}>
