@@ -1,13 +1,13 @@
-import { useNavigate } from 'react-router-dom';
 import { signOutAlert } from '../../global/sweetAlert';
+import Cookies from 'js-cookie';
 
-const HandleSignOut = ({handleDrawerClose}: {handleDrawerClose: () => void}) => {
-    const navigate = useNavigate();
+const HandleSignOut = ({ handleDrawerClose }: { handleDrawerClose: () => void }) => {
     const handleSignOut = () => {
         handleDrawerClose();
         signOutAlert().then((result) => {
             if (result.isConfirmed) {
-                navigate('/login')
+                Cookies.remove("authorization");
+                window.location.href = "/login";
             }
         });
     };

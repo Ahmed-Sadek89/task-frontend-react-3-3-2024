@@ -3,6 +3,7 @@ import { Outlet } from 'react-router-dom';
 import CustomAppBar from './CustomAppBar';
 import { Box, styled } from '@mui/material';
 import CustomDrawer from './CustomDrawer';
+import CheckUserIsNotAuth from '../../global/CheckUserIsNotAuth';
 
 
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })<{
@@ -32,6 +33,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 }));
 
 const Layout = () => {
+  CheckUserIsNotAuth()
   const [open, setOpen] = React.useState(false);
   const handleDrawerOpen = () => {
     setOpen(true);

@@ -4,11 +4,14 @@ import { useNavigate } from "react-router-dom";
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import HandleSignOut from "./HandleSignOut";
 import { signOutBtnStyle } from "./CustomStyles";
+import { getDecodedToken } from "../../global/getDecodedToken";
+import Cookies from "js-cookie";
 
 export default function CustomDropDown({ handleDrawerClose }: { handleDrawerClose: () => void }) {
     const [open, setOpen] = React.useState(false);
     const anchorRef = React.useRef<HTMLDivElement>(null);
-
+    const token = Cookies.get('authorization') || ''
+    let decoded = getDecodedToken(token);
 
     const navigate = useNavigate()
     const handleMenuItemClick = () => {
@@ -16,7 +19,7 @@ export default function CustomDropDown({ handleDrawerClose }: { handleDrawerClos
         handleDrawerClose()
         setOpen(false);
     };
-    const handleSignOut = HandleSignOut({handleDrawerClose})
+    const handleSignOut = HandleSignOut({ handleDrawerClose })
 
     const handleToggle = () => {
         setOpen((prevOpen) => !prevOpen);
@@ -41,10 +44,10 @@ export default function CustomDropDown({ handleDrawerClose }: { handleDrawerClos
             >
                 <Typography
                     variant='subtitle1'
-                    sx={{ cursor: 'pointer' }}
+                    sx={{ cursor: 'pointer', textTransform: "capitalize" }}
                     onClick={() => setOpen((prevOpen) => !prevOpen)}
                 >
-                    Ahmed Sadek
+                    {decoded.user.username}
                 </Typography>
                 <Button
                     size="small"
