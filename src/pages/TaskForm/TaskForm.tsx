@@ -5,7 +5,6 @@ import { formatDate } from '../../global/formateDate';
 import { boxContainer, addTaskForm, buttonBoxStyle, buttonStyle, homeTitle } from '../../global/globalStyle';
 import { useLocation, useParams } from 'react-router-dom';
 import { rows } from '../../global/dummyTableData';
-import CheckPageName from './CheckPageName';
 import TaskState from './TaskState';
 import TitleTextField from './TitleTextField';
 import DescriptionTextField from './DiscriptionTextField';
@@ -18,7 +17,6 @@ const TaskForm = () => {
     const location = useLocation();
     const myTask = rows.filter(index => index.id.toString() === task_id)
 
-    CheckPageName(myTask)
     const [task, setTask] = TaskState(myTask)
     const [errors, setErrors] = useState({
         title: '',

@@ -2,8 +2,8 @@ export type taskOutput = {
   id: number,
   title: string,
   description: string,
-  category: "PERSONAL" | "WORK" | "OTHERS" | "SHOPPING",
-  status: "PENDING" | "COMPLETED",
+  category: string,
+  status: string,
   date: string,
   userId: number
 }[]
@@ -13,7 +13,7 @@ export type taskInput = {
   title?: string,
   description?: string,
   category?: string,
-  status?: "PENDING" | "COMPLETED",
+  status?: string,
   userId?: number
 }
 

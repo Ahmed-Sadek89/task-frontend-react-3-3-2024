@@ -1,10 +1,10 @@
 import { Visibility, VisibilityOff } from '@mui/icons-material'
 import { Box, FormControl, IconButton, InputAdornment, OutlinedInput, Typography } from '@mui/material'
 import React from 'react'
-import { userTextField } from './styles'
+import { userTextField } from '../styles'
 
 type props = {
-    name: string,
+    name: 'password' | 'confirmPassword',
     value: string | undefined,
     handleUserInputChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void,
     showPassword: boolean, 
@@ -28,7 +28,7 @@ const PasswordTextField = ({ name, value, handleUserInputChange, showPassword, h
                         <InputAdornment position="end">
                             <IconButton
                                 sx={{ color: 'secondary.contrastText' }}
-                                onClick={() => handleClickShowPassword('password')}
+                                onClick={() => handleClickShowPassword(name)}
                                 edge="end"
                             >
                                 {showPassword ? <VisibilityOff /> : <Visibility />}

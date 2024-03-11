@@ -1,10 +1,10 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { AppDispatch } from '../../store/store'
+import { AppDispatch } from '../../../store/store'
 import { useNavigate } from 'react-router-dom';
-import { userOutput } from '../../store/async_slices/interfaces/user.interface';
-import { userDataInput } from '../../Types/userDataInput';
-import { user_register } from '../../store/async_slices/slices/user/register.user.slice';
+import { userOutput } from '../../../store/async_slices/interfaces/user.interface';
+import { userDataInput } from '../../../Types/userDataInput';
+import { user_register } from '../../../store/async_slices/slices/user/register.user.slice';
 
 type props = {
     userDataInput: userDataInput,

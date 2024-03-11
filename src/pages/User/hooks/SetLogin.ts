@@ -1,10 +1,10 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { AppDispatch } from '../../store/store'
+import { AppDispatch } from '../../../store/store'
 import { useNavigate } from 'react-router-dom';
-import { userOutput } from '../../store/async_slices/interfaces/user.interface';
-import { userDataInput } from '../../Types/userDataInput';
-import { user_login } from '../../store/async_slices/slices/user/login.user.slice';
+import { userOutput } from '../../../store/async_slices/interfaces/user.interface';
+import { userDataInput } from '../../../Types/userDataInput';
+import { user_login } from '../../../store/async_slices/slices/user/login.user.slice';
 import Cookies from 'js-cookie';
 
 type props = {
@@ -20,7 +20,7 @@ const SetLogin = ({ userDataInput, setUserDataInput }: props) => {
             password: userDataInput.password,
         })).then(({ payload }) => {
             let res = payload as userOutput;
-            if (res.authorization) {
+            if (res.authorization !== null) {
                 Cookies.set("authorization", res.authorization || "");
                 navigate("/");
                 setUserDataInput({ username: "", email: "", password: "", confirmPassword: "" })

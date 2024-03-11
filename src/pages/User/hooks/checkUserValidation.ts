@@ -1,13 +1,18 @@
-import { userDataInput } from "../../Types/userDataInput";
+import { userDataInput } from "../../../Types/userDataInput";
 
 type registrationPprops = {
     pathname: string,
     userDataInput: userDataInput,
-    setErrors: React.Dispatch<React.SetStateAction<{}>>
+    setErrors: React.Dispatch<React.SetStateAction<userDataInput | undefined>>
 }
-export const checkRegisterValidation = ({ pathname, userDataInput, setErrors }: registrationPprops): boolean => {
+export const checkUserValidation = ({ pathname, userDataInput, setErrors }: registrationPprops): boolean => {
     let valid = true;
-    const newErrors: any = {};
+    const newErrors: userDataInput = {
+        username: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+    };
     if (pathname === '/register' && !userDataInput.username?.trim()) {
         newErrors.username = 'username is required';
         valid = false;
@@ -31,7 +36,7 @@ export const checkRegisterValidation = ({ pathname, userDataInput, setErrors }: 
         valid = false;
     }
 
-    if (pathname === '/register' &&  userDataInput.confirmPassword !== userDataInput.password) {
+    if (pathname === '/register' && userDataInput.confirmPassword !== userDataInput.password) {
         newErrors.confirmPassword = 'Password Do Not Match';
         valid = false;
     }

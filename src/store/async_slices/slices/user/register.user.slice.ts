@@ -41,7 +41,9 @@ export const user_register_slice = createSlice({
             })
             .addCase(user_register.rejected, (state, action) => {
                 const payload = action.payload as userOutput;
-                state.data = payload;
+                state.data = {
+                    message: payload.message
+                };
                 state.loading = false;
                 state.error = true;
             });

@@ -1,5 +1,5 @@
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import { ORAccount, linkedInContent, linkedinButton } from './styles'
+import { ORAccount, linkedInContent, linkedinButton } from '../styles'
 import { Box, Button, Typography } from '@mui/material'
 
 const LinkedInLayout = () => {

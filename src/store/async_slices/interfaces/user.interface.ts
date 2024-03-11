@@ -1,18 +1,21 @@
 export type userState = {
     loading: boolean,
     error: boolean,
-    data: userOutput| null
+    data: userOutput | null
 }
 
 export type userOutput = {
-    id: number,
-    username: string,
-    email: string,
-    URLImage: string,
-    created_at: string,
+    id?: number,
+    username?: string,
+    email?: string,
+    URLImage?: string,
+    created_at?: string,
 
-    message?: string| null,
-    authorization?: string| null
+    message?: string | null,
+    error?: string
+
+    statusCode?: number
+    authorization?: string | null
 }
 
 export type userRegister = {

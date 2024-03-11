@@ -1,6 +1,6 @@
 import { Box, TextField, Typography } from '@mui/material'
 import React from 'react'
-import { userTextField } from './styles'
+import { userTextField } from '../styles'
 
 type props = {
     name: string,
