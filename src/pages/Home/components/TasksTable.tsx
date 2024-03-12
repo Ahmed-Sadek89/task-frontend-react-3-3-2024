@@ -1,8 +1,8 @@
 import { DataGrid } from '@mui/x-data-grid';
-import { dataGridStyle } from './styles';
+import { dataGridStyle } from '../styles';
 import { columns } from './RenderButtonGroupCell';
 import { useSelector } from 'react-redux';
-import { rootState } from '../../store/store';
+import { rootState } from '../../../store/store';
 import { Typography } from '@mui/material';
 
 export default function DataTable() {

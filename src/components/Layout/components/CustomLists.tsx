@@ -1,9 +1,9 @@
 import { ListItemText, ListItemButton, ListItem, Divider, List, Box, Avatar } from '@mui/material';
 import ExitToAppOutlinedIcon from '@mui/icons-material/ExitToAppOutlined';
 import CustomDropDown from './CustomDropDown';
-import HandleSignOut from './HandleSignOut';
+import HandleSignOut from '../Hooks/HandleSignOut';
 import CustomListItems from './CustomListItems';
-import { signOutBtnStyle } from './CustomStyles';
+import { signOutBtnStyle } from '../CustomStyles';
 
 const CustomLists = ({ handleDrawerClose }: { handleDrawerClose: () => void }) => {
     const handleSignOut = HandleSignOut({ handleDrawerClose })

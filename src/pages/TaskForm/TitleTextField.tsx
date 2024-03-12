@@ -1,15 +1,19 @@
 import { Box, TextField, Typography } from '@mui/material'
 import { textFieldStyle } from '../../global/globalStyle'
 import React from 'react'
-import { taskInput } from '../../Types/taskInput'
+import { Task } from '../../Types/Tasks'
 
 
 type Props = {
-    task: taskInput,
-    setTask: React.Dispatch<React.SetStateAction<taskInput>>,
-    titleErrors: string
+    task: Task,
+    setTask: React.Dispatch<React.SetStateAction<{ 
+        title: string; 
+        description: string; 
+        category: undefined; 
+    }>>,
+    titleErrors: string | undefined
 }
-const TitleTextField = ({task, setTask, titleErrors}: Props) => {
+const TitleTextField = ({ task, setTask, titleErrors }: Props) => {
     return (
         <Box sx={{ display: 'flex', flexDirection: "column" }}>
             <TextField

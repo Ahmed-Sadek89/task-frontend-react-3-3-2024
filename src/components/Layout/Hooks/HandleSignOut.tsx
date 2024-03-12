@@ -1,4 +1,4 @@
-import { signOutAlert } from '../../global/sweetAlert';
+import { signOutAlert } from '../../../global/sweetAlert';
 import Cookies from 'js-cookie';
 
 const HandleSignOut = ({ handleDrawerClose }: { handleDrawerClose: () => void }) => {

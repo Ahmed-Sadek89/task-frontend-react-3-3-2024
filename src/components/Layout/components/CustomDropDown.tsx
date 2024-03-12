@@ -2,9 +2,9 @@ import { Button, ButtonGroup, ClickAwayListener, Grow, MenuItem, MenuList, Paper
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import HandleSignOut from "./HandleSignOut";
-import { signOutBtnStyle } from "./CustomStyles";
-import { getDecodedToken } from "../../global/getDecodedToken";
+import HandleSignOut from "../Hooks/HandleSignOut";
+import { signOutBtnStyle } from "../CustomStyles";
+import { getDecodedToken } from "../../../global/getDecodedToken";
 import Cookies from "js-cookie";
 
 export default function CustomDropDown({ handleDrawerClose }: { handleDrawerClose: () => void }) {

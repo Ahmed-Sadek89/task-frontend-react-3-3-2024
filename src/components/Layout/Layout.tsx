@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { Outlet } from 'react-router-dom';
-import CustomAppBar from './CustomAppBar';
+import CustomAppBar from './components/CustomAppBar';
 import { Box, styled } from '@mui/material';
-import CustomDrawer from './CustomDrawer';
+import CustomDrawer from './components/CustomDrawer';
 import { getInfoFromDecodedToken } from '../../global/getDecodedToken';
-import CheckNotAuth from './CheckNotAuth';
+import CheckNotAuth from './Hooks/CheckNotAuth';
 
 
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })<{

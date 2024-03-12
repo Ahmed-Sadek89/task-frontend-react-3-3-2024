@@ -20,8 +20,6 @@ export const getTaskById = createAsyncThunk<taskOutput, taskId>(
           authorization: `Bearer ${Cookies.get("authorization")}`
         }
       });
-      console.log(res.data)
-
       return res.data;
     } catch (error: any) {
       return rejectWithValue(error.response.data);

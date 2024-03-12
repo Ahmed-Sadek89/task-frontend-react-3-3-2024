@@ -3,9 +3,9 @@ import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
 import { useNavigate } from "react-router-dom";
 import MenuIcon from '@mui/icons-material/Menu';
 import CustomDropDown from "./CustomDropDown";
-import { appbarStyle, toolbarLeftStyle, toolbarRightStyle, toolbarStyle } from "./CustomStyles";
+import { appbarStyle, toolbarLeftStyle, toolbarRightStyle, toolbarStyle } from "../CustomStyles";
 import Cookies from "js-cookie";
-import { getDecodedToken } from "../../global/getDecodedToken";
+import { getDecodedToken } from "../../../global/getDecodedToken";
 
 type props = {
     open: boolean,

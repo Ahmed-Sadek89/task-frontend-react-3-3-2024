@@ -2,18 +2,19 @@ export type taskOutput = {
   id: number,
   title: string,
   description: string,
-  category: string,
-  status: string,
+  category?: 'WORK' | 'PERSONAL' | 'SHOPPING' | 'OTHERS'| undefined
+  status?: 'PENDING' | 'COMPLETED',
   date: string,
   userId: number
 }[]
+
 
 export type taskInput = {
   id?: number,
   title?: string,
   description?: string,
-  category?: string,
-  status?: string,
+  category?: 'WORK' | 'PERSONAL' | 'SHOPPING' | 'OTHERS'| undefined
+  status?: 'PENDING' | 'COMPLETED',
   userId?: number
 }
 
@@ -30,3 +31,4 @@ export type taskState = {
   error: boolean,
   data: taskOutput | null
 }
+

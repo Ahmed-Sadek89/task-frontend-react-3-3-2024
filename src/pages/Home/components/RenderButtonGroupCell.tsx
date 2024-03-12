@@ -1,13 +1,13 @@
 import { useNavigate } from "react-router-dom";
-import { cellsInTableBody } from "./styles";
+import { cellsInTableBody } from "../styles";
 import { Box, Button } from "@mui/material";
 import { GridColDef } from "@mui/x-data-grid";
-import { Task } from "../../Types/Tasks";
+import { Task } from "../../../Types/Tasks";
 import { useState } from "react";
-import { deleteTaskAlert } from "../../global/sweetAlert";
+import { deleteTaskAlert } from "../../../global/sweetAlert";
 import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../store/store";
-import { updateTaskById } from "../../store/async_slices/slices/task/updateById.task.slice";
+import { AppDispatch } from "../../../store/store";
+import { updateTaskById } from "../../../store/async_slices/slices/task/updateById.task.slice";
 
 export const columns: GridColDef[] = [
     { field: 'id', headerName: 'ID', width: 50, sortable: false, },
@@ -22,7 +22,7 @@ export const columns: GridColDef[] = [
     {
         field: 'date',
         headerName: 'Date',
-        width: 150,
+        width: 250,
         sortable: false,
     },
     {

@@ -1,11 +1,13 @@
 import { useState } from 'react'
 import { Task } from '../../Types/Tasks'
 
-const TaskState = (myTask: Task[]) => {
+const TaskState = (myTask: Task[]| null) => {
+    let task = myTask ? myTask[0] : {};
+    console.log(task)
     return useState({
-        title: myTask[0]?.title || '',
-        description: myTask[0]?.description || '',
-        category: myTask[0]?.category || '',
+        title: '',
+        description:'',
+        category:undefined,
     })
 }
 

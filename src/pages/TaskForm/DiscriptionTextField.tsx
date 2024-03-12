@@ -1,12 +1,16 @@
 import { Box, TextField, Typography } from '@mui/material'
 import { textFieldStyle } from '../../global/globalStyle'
 import React from 'react'
-import { taskInput } from '../../Types/taskInput'
+import { Task } from '../../Types/Tasks'
 
 
 type Props = {
-    task: taskInput,
-    setTask: React.Dispatch<React.SetStateAction<taskInput>>,
+    task: Task,
+    setTask: React.Dispatch<React.SetStateAction<{
+        title: string;
+        description: string;
+        category: undefined;
+    }>>,
     descriptionErrors: string
 }
 const DescriptionTextField = ({ task, setTask, descriptionErrors }: Props) => {
