@@ -6,11 +6,7 @@ import { Task } from '../../Types/Tasks';
 
 type Props = {
     task: Task,
-    setTask: React.Dispatch<React.SetStateAction<{
-        title: string;
-        description: string;
-        category: undefined;
-    }>>,
+    setTask: React.Dispatch<React.SetStateAction<Task>>,
     categoryErrors: string
 }
 const categories = ['WORK', 'PERSONAL', 'SHOPPING', 'OTHERS'];
@@ -25,7 +21,7 @@ const CategoryTextField = ({ task, setTask, categoryErrors }: Props) => {
                 defaultValue="WORK"
                 sx={selectCategoryStyle}
                 value={task.category}
-                onChange={(e) => setTask((prev: any) => {
+                onChange={(e) => setTask((prev) => {
                     return {
                         ...prev,
                         category: e.target.value

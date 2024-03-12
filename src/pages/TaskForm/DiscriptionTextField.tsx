@@ -6,11 +6,7 @@ import { Task } from '../../Types/Tasks'
 
 type Props = {
     task: Task,
-    setTask: React.Dispatch<React.SetStateAction<{
-        title: string;
-        description: string;
-        category: undefined;
-    }>>,
+    setTask: React.Dispatch<React.SetStateAction<Task>>,
     descriptionErrors: string
 }
 const DescriptionTextField = ({ task, setTask, descriptionErrors }: Props) => {

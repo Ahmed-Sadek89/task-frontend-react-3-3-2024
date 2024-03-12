@@ -2,8 +2,8 @@ export type Task = {
     id?: number,
     title?: string,
     description?: string,
-    category?: 'WORK' | 'PERSONAL' | 'SHOPPING' | 'OTHERS'
-    status?: 'PENDING' | 'COMPLETED',
+    category?: string
+    status?: string,
     date?: string,
     userId?: number
 }

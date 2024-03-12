@@ -4,29 +4,23 @@ import { useEffect, useState } from 'react';
 import { formatDate } from '../../global/formateDate';
 import { boxContainer, addTaskForm, buttonBoxStyle, buttonStyle, homeTitle } from '../../global/globalStyle';
 import { useLocation, useParams } from 'react-router-dom';
-import TaskState from './TaskState';
 import TitleTextField from './TitleTextField';
 import DescriptionTextField from './DiscriptionTextField';
 import CategoryTextField from './CategoryTextField';
 import { addEditTaskSuccess } from '../../global/sweetAlert';
 import { validateForm } from './validationForm';
-import { TaskError } from '../../Types/Tasks';
+import { Task, TaskError } from '../../Types/Tasks';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, rootState } from '../../store/store';
 import { getTaskById } from '../../store/async_slices/slices/task/getTaskById.task.slice';
 
 const TaskForm = () => {
-    const { task_id } = useParams();
-    const dispatch = useDispatch<AppDispatch>()
-    useEffect(() => {
-        dispatch(getTaskById({id: parseInt(task_id || '0')}))
-    }, [dispatch, task_id]);
 
-    const location = useLocation();
-    const taskById = useSelector((state: rootState) => state.getTaskById);
-    console.log(taskById)
-    const [task, setTask] = TaskState(taskById.data);
-    console.log(task)
+    const [task, setTask] = useState<Task>({
+        title: "",
+        description: "",
+        category: undefined,
+    });
     const [errors, setErrors] = useState<TaskError>({
         title: '',
         description: '',
@@ -35,13 +29,9 @@ const TaskForm = () => {
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        if (validateForm({task, setErrors})) {
-            console.log({id: 1, ...task, date: formatDate(new Date())})
-            if (location.pathname === '/task/add') {
-                addEditTaskSuccess("new task added successfully")
-            } else if (location.pathname === `/task/${task_id}`) {
-                addEditTaskSuccess("this task updated successfully")
-            }
+        if (validateForm({ task, setErrors })) {
+            console.log({ id: 1, ...task, date: formatDate(new Date()) })
+            addEditTaskSuccess("new task added successfully")
             setTask({
                 title: "", description: "", category: undefined
             })
@@ -53,7 +43,7 @@ const TaskForm = () => {
         <Container>
             <Box sx={boxContainer}>
                 <Typography sx={homeTitle} >
-                    {!taskById.data ? 'Add your new task.' : `Edit your new task number #${task_id}`}
+                    Add your new task.
                 </Typography>
                 <Container>
                     <Box component='form' sx={addTaskForm} onSubmit={e => handleSubmit(e)}>
@@ -64,12 +54,12 @@ const TaskForm = () => {
                             <Button
                                 type='submit'
                                 variant='contained'
-                                color={taskById.data ? "success" : "info"}
+                                color={"success"}
                                 sx={buttonStyle}
                             >
                                 <AddCardOutlinedIcon />
                                 <Typography variant='body1'>
-                                    {taskById.data ? "Add " : "Edit "}Task
+                                    Add Task
                                 </Typography>
                             </Button>
                         </Box>

@@ -2,8 +2,8 @@ export type taskOutput = {
   id: number,
   title: string,
   description: string,
-  category?: 'WORK' | 'PERSONAL' | 'SHOPPING' | 'OTHERS'| undefined
-  status?: 'PENDING' | 'COMPLETED',
+  category?: string
+  status?: string,
   date: string,
   userId: number
 }[]
@@ -13,8 +13,8 @@ export type taskInput = {
   id?: number,
   title?: string,
   description?: string,
-  category?: 'WORK' | 'PERSONAL' | 'SHOPPING' | 'OTHERS'| undefined
-  status?: 'PENDING' | 'COMPLETED',
+  category?: string
+  status?: string,
   userId?: number
 }
 
