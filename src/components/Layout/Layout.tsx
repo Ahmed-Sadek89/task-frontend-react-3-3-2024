@@ -3,9 +3,8 @@ import { Outlet } from 'react-router-dom';
 import CustomAppBar from './CustomAppBar';
 import { Box, styled } from '@mui/material';
 import CustomDrawer from './CustomDrawer';
-import CheckUserIsNotAuth from '../../global/CheckUserIsNotAuth';
-import { getDecodedToken } from '../../global/getDecodedToken';
-import Cookies from 'js-cookie';
+import { getInfoFromDecodedToken } from '../../global/getDecodedToken';
+import GetTasksForAuthUser from '../../GetTasksForAuthUser';
 
 
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })<{
@@ -35,7 +34,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 }));
 
 const Layout = () => {
-  CheckUserIsNotAuth()
+  // CheckUserIsNotAuth()
   const [open, setOpen] = React.useState(false);
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -43,8 +42,8 @@ const Layout = () => {
   const handleDrawerClose = () => {
     setOpen(false);
   };
-  const token = Cookies.get('authorization') || ''
-  let decoded = getDecodedToken(token)
+  let decoded = getInfoFromDecodedToken();
+  GetTasksForAuthUser()
   return (
     <Box sx={{ display: 'flex' }} >
       {

@@ -1,3 +1,4 @@
+import Cookies from "js-cookie";
 import { jwtDecode } from "jwt-decode";
 
 export function getDecodedToken(token: string) {
@@ -23,4 +24,10 @@ export function getDecodedToken(token: string) {
           }
       }
       return decoded
+}
+
+export const getInfoFromDecodedToken = () => {
+  const token = Cookies.get('authorization') || '';
+  const decoded = getDecodedToken(token)
+  return decoded
 }

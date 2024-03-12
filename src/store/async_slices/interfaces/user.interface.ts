@@ -4,17 +4,17 @@ export type userState = {
     data: userOutput | null
 }
 
-export type userOutput = {
+type userOutputRegisteration = {
     id?: number,
     username?: string,
     email?: string,
     URLImage?: string,
     created_at?: string,
-
+}
+export type userOutput = userOutputRegisteration & {
+    status?: string
     message?: string | null,
-    error?: string
-
-    statusCode?: number
+    error?: string,
     authorization?: string | null
 }
 

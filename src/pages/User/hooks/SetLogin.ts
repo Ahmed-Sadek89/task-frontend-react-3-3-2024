@@ -20,7 +20,8 @@ const SetLogin = ({ userDataInput, setUserDataInput }: props) => {
             password: userDataInput.password,
         })).then(({ payload }) => {
             let res = payload as userOutput;
-            if (res.authorization !== null) {
+            console.log({res})
+            if (res.status === '200') {
                 Cookies.set("authorization", res.authorization || "");
                 navigate("/");
                 setUserDataInput({ username: "", email: "", password: "", confirmPassword: "" })

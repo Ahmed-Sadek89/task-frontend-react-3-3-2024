@@ -3,8 +3,6 @@ import axios from "axios"
 import { userOutput, userRegister, userState } from "../../interfaces/user.interface";
 import { api_link } from "../../../../global/env";
 
-
-
 const initialState: userState = {
     loading: false,
     error: false,
@@ -41,7 +39,9 @@ export const user_login_slice = createSlice({
             })
             .addCase(user_login.rejected, (state, action) => {
                 const payload = action.payload as userOutput;
-                state.data = payload;
+                state.data = {
+                    message: payload.message
+                };;
                 state.loading = false;
                 state.error = true;
             });
