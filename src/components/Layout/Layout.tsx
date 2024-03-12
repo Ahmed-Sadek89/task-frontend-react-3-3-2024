@@ -4,7 +4,6 @@ import CustomAppBar from './CustomAppBar';
 import { Box, styled } from '@mui/material';
 import CustomDrawer from './CustomDrawer';
 import { getInfoFromDecodedToken } from '../../global/getDecodedToken';
-import GetTasksForAuthUser from '../../GetTasksForAuthUser';
 
 
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })<{
@@ -43,7 +42,6 @@ const Layout = () => {
     setOpen(false);
   };
   let decoded = getInfoFromDecodedToken();
-  GetTasksForAuthUser()
   return (
     <Box sx={{ display: 'flex' }} >
       {

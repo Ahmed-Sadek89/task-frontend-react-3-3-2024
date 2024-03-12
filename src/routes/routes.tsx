@@ -6,13 +6,13 @@ import Home from "../pages/Home/Home";
 import Profile from "../pages/Profile/Profile";
 import TaskForm from "../pages/TaskForm/TaskForm";
 import User from "../pages/User/User";
-
+import Error from "../components/Error/Error";
 
 const routes = createBrowserRouter([
     {
         path: '/',
         element: <Layout />,
-        errorElement: <h1>put error component here</h1>,
+        errorElement: <Error />,
         children: [
             {
                 path: '/',

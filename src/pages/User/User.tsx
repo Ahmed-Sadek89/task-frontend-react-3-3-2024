@@ -1,5 +1,4 @@
 import { useLocation } from 'react-router-dom'
-import CheckAuth from '../../global/CheckAuth'
 import { Box, Button, Container, Typography } from '@mui/material'
 import { fetchDataTextError, formButtonContent, formContent, pageTitle, userContainerStyle, userLayoutStyle } from './styles'
 import UsernameTextField from './components/NormalTextField'
@@ -13,7 +12,7 @@ import HandleUserSubmit from './hooks/HandleUserSubmit'
 import RequiredSelectors from './hooks/RequiredSelectors'
 
 const User = () => {
-    CheckAuth() // if user has token -> navigate to :/
+    
     const location = useLocation();
     const { user_register_state, user_login_state } = RequiredSelectors()
     const { showPassword, showConfirmPassword, handleClickShowPassword } = HandleShowHidePassword()
