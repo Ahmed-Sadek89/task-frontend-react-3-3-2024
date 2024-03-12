@@ -10,9 +10,11 @@ import UserDataInputHook from './hooks/UserDataInputHook'
 import UserErrorInputHook from './hooks/UserErrorInputHook'
 import HandleUserSubmit from './hooks/HandleUserSubmit'
 import RequiredSelectors from './hooks/RequiredSelectors'
+import CheckAuthLogin from './hooks/CheckAuthLogin'
 
 const User = () => {
-    
+    CheckAuthLogin()
+
     const location = useLocation();
     const { user_register_state, user_login_state } = RequiredSelectors()
     const { showPassword, showConfirmPassword, handleClickShowPassword } = HandleShowHidePassword()

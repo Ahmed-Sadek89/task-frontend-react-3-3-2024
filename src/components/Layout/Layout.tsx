@@ -4,6 +4,7 @@ import CustomAppBar from './CustomAppBar';
 import { Box, styled } from '@mui/material';
 import CustomDrawer from './CustomDrawer';
 import { getInfoFromDecodedToken } from '../../global/getDecodedToken';
+import CheckNotAuth from './CheckNotAuth';
 
 
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })<{
@@ -33,7 +34,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 }));
 
 const Layout = () => {
-  // CheckUserIsNotAuth()
+  CheckNotAuth()
   const [open, setOpen] = React.useState(false);
   const handleDrawerOpen = () => {
     setOpen(true);
