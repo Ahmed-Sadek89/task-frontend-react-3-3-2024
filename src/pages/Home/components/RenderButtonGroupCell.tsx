@@ -8,9 +8,10 @@ import { deleteTaskAlert } from "../../../global/sweetAlert";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, rootState } from "../../../store/store";
 import { updateTaskById } from "../../../store/async_slices/slices/task/updateById.task.slice";
+import { deleteTaskById } from "../../../store/async_slices/slices/task/deleteTaskById.task.slice";
 
 export const columns: GridColDef[] = [
-    { field: 'id', headerName: 'ID', width: 50, sortable: false, },
+    { field: 'id', headerName: 'ID', width: 70, sortable: true, },
     { field: 'title', headerName: 'Title', width: 200, sortable: false, },
     { field: 'description', headerName: 'Description', width: 300, sortable: false, },
     {
@@ -64,8 +65,11 @@ function RenderStatusCell(params: Task | any) {
 }
 
 function RenderButtonGroupCell(params: Task | any) {
-    const handleDelete = (id: number) => {
-        deleteTaskAlert(id)
+    const dispatch = useDispatch<AppDispatch>();
+    const handleDelete = async (id: number) => {
+        await deleteTaskAlert(id).then(() => {
+            dispatch(deleteTaskById({ id })).then(() => window.location.href = '/')
+        })
     }
     const tasks = useSelector((state: rootState) => state.getTaskByUserId)
     return (

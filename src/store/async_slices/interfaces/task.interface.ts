@@ -5,7 +5,8 @@ export type taskOutput = {
   category?: string
   status?: string,
   date: string,
-  userId: number
+  userId: number,
+  count: number[]
 }[]
 
 

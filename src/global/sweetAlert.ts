@@ -10,14 +10,14 @@ export const signOutAlert = () => {
     })
 };
 export const addEditTaskSuccess = (text: string) => {
-    Swal.fire({
+    return Swal.fire({
         title: "Good job!",
         text,
         icon: "success"
-    });
+    })
 }
 export const deleteTaskAlert = (id: number) => {
-    Swal.fire({
+    return Swal.fire({
         title: "Are you sure?",
         text: "You won't be able to revert this!",
         icon: "warning",
@@ -25,13 +25,5 @@ export const deleteTaskAlert = (id: number) => {
         confirmButtonColor: "#d33",
         cancelButtonColor: "#1976d2",
         confirmButtonText: "Yes, delete it!"
-    }).then((result) => {
-        if (result.isConfirmed) {
-            Swal.fire({
-                title: "Deleted!",
-                text: `Your task number ${id} has been deleted.`,
-                icon: "success"
-            });
-        }
-    });
+    })
 }

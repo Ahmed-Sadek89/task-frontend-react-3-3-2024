@@ -10,20 +10,40 @@ import { validateForm } from './hooks/validationForm';
 import { Task, TaskError } from '../../Types/Tasks';
 import { useLocation } from 'react-router-dom';
 import TaskState from './hooks/TaskState';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, rootState } from '../../store/store';
+import { updateTaskById } from '../../store/async_slices/slices/task/updateById.task.slice';
+import { insertTask } from '../../store/async_slices/slices/task/insertTask.task.slice';
+import { getInfoFromDecodedToken } from '../../global/getDecodedToken';
 
 const TaskForm = () => {
     const { state }: { state: Task } = useLocation();
+    const dispatch = useDispatch<AppDispatch>();
     const [task, setTask] = TaskState()
     const [errors, setErrors] = useState<TaskError>({
         title: '',
         description: '',
         category: ''
     });
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const updatetaskState = useSelector((state: rootState) => state.updateTaskById);
+    const insertTaskState = useSelector((state: rootState) => state.insertTask);
+    const decoded = getInfoFromDecodedToken()
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (validateForm({ task, setErrors })) {
-            console.log({ id: 1, ...task })
-            addEditTaskSuccess("new task added successfully")
+            if (state === null) {
+                await dispatch(insertTask({ ...task, userId: decoded.user.id }))
+                    .then(() => {
+                        addEditTaskSuccess("new task added successfully")
+                            .then(() => window.location.href = "/")
+                    })
+            } else {
+                await dispatch(updateTaskById({ id: state.id, ...task }))
+                    .then(() => {
+                        addEditTaskSuccess("the task is updated successfully")
+                            .then(() => window.location.href = "/")
+                    })
+            }
             setTask({
                 title: "", description: "", category: ""
             })
@@ -35,7 +55,7 @@ const TaskForm = () => {
         <Container>
             <Box sx={boxContainer}>
                 <Typography sx={homeTitle} >
-                    {state ? `Edit the task number #${state.id}` :"Add your new task."}
+                    {state ? `Edit the task number #${state.id}` : "Add your new task."}
                 </Typography>
                 <Container>
                     <Box component='form' sx={addTaskForm} onSubmit={e => handleSubmit(e)}>
@@ -45,13 +65,18 @@ const TaskForm = () => {
                         <Box sx={buttonBoxStyle}>
                             <Button
                                 type='submit'
+                                disabled={
+                                    updatetaskState.loading === true || insertTaskState.loading === true ?
+                                        true :
+                                        false
+                                }
                                 variant='contained'
-                                color={state ? "info" :"success"}
+                                color={state ? "info" : "success"}
                                 sx={buttonStyle}
                             >
                                 <AddCardOutlinedIcon />
                                 <Typography variant='body1'>
-                                    {state ? "Edit the ": "Add a "} Task
+                                    {state ? "Edit the " : "Add a "} Task
                                 </Typography>
                             </Button>
                         </Box>
