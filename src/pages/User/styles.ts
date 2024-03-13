@@ -26,27 +26,7 @@ export const userTextField = {
 export const formButtonContent = { display: "flex", justifyContent: "center" }
 
 export const fetchDataTextError = { textAlign: 'center', marginTop: "10px", fontStyle: "italic" }
-export const linkedInContent = { display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column", gap: 1 }
-export const ORAccount = {
-    backgroundColor: "secondary.dark", padding: "10px",
-    color: "secondary.contrastText", border: "2px dotted",
-    borderColor: "secondary.contrastText",
-    borderRadius: "50%"
-}
-export const linkedinButton = {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: "center",
-    backgroundColor: '#0077b5',
-    color: '#ffffff',
-    padding: '10px ',
-    fontSize: '16px',
-    fontWeight: 'bold',
-    textTransform: "capitalize",
-    "&:hover": {
-        backgroundColor: '#005f86',
-    }
-}
+
 export const checkAcc = {
     display: "flex",
     flexDirection: { xs: "column", md: 'row' },

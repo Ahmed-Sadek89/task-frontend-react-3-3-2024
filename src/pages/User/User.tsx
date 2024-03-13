@@ -3,7 +3,6 @@ import { Box, Button, Container, Typography } from '@mui/material'
 import { fetchDataTextError, formButtonContent, formContent, pageTitle, userContainerStyle, userLayoutStyle } from './styles'
 import UsernameTextField from './components/NormalTextField'
 import PasswordTextField from './components/PasswordTextField'
-import LinkedInLayout from './components/LinkedInLayout'
 import CheckRouteName from './components/CheckRouteName'
 import HandleShowHidePassword from './hooks/HandleShowHidePassword'
 import UserDataInputHook from './hooks/UserDataInputHook'
@@ -92,7 +91,6 @@ const User = () => {
                         </Typography>
                     }
                 </Container>
-                <LinkedInLayout />
                 <CheckRouteName />
             </Box>
         </Box>
