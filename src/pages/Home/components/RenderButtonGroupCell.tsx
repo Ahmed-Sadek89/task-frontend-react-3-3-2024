@@ -1,12 +1,12 @@
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { cellsInTableBody } from "../styles";
 import { Box, Button } from "@mui/material";
 import { GridColDef } from "@mui/x-data-grid";
 import { Task } from "../../../Types/Tasks";
 import { useState } from "react";
 import { deleteTaskAlert } from "../../../global/sweetAlert";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../../store/store";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, rootState } from "../../../store/store";
 import { updateTaskById } from "../../../store/async_slices/slices/task/updateById.task.slice";
 
 export const columns: GridColDef[] = [
@@ -45,7 +45,7 @@ export const columns: GridColDef[] = [
 function RenderStatusCell(params: Task | any) {
     const [status, setStatus] = useState<string>(params.row.status);
     const dispatch = useDispatch<AppDispatch>();
-    
+
     const handleUpdateTaskState = async () => {
         setStatus((prev) => prev === 'COMPLETED' ? 'PENDING' : "COMPLETED")
         await dispatch(updateTaskById({
@@ -64,18 +64,19 @@ function RenderStatusCell(params: Task | any) {
 }
 
 function RenderButtonGroupCell(params: Task | any) {
-    const navigate = useNavigate()
     const handleDelete = (id: number) => {
         deleteTaskAlert(id)
     }
+    const tasks = useSelector((state: rootState) => state.getTaskByUserId)
     return (
         <Box sx={cellsInTableBody}>
-            <Button
-                sx={{ mr: 2 }}
-                variant='contained'
-                color='primary'
-                onClick={() => navigate(`task/${params.row.id}`)}
-            >Edit</Button>
+            <Link to={`task/${params.row.id}`} state={tasks.data?.filter(index => index.id === params.row.id)[0]}>
+                <Button
+                    sx={{ mr: 2 }}
+                    variant='contained'
+                    color='primary'
+                >Edit</Button>
+            </Link>
             <Button variant='contained' color='error'
                 onClick={() => handleDelete(params.row.id)}
             >Delete</Button>

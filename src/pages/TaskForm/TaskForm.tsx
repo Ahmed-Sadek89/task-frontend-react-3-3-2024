@@ -1,26 +1,20 @@
 import { Box, Button, Container, Typography } from '@mui/material'
 import AddCardOutlinedIcon from '@mui/icons-material/AddCardOutlined';
-import { useEffect, useState } from 'react';
-import { formatDate } from '../../global/formateDate';
+import { useState } from 'react';
 import { boxContainer, addTaskForm, buttonBoxStyle, buttonStyle, homeTitle } from '../../global/globalStyle';
-import { useLocation, useParams } from 'react-router-dom';
 import TitleTextField from './TitleTextField';
 import DescriptionTextField from './DiscriptionTextField';
 import CategoryTextField from './CategoryTextField';
 import { addEditTaskSuccess } from '../../global/sweetAlert';
 import { validateForm } from './validationForm';
 import { Task, TaskError } from '../../Types/Tasks';
-import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, rootState } from '../../store/store';
-import { getTaskById } from '../../store/async_slices/slices/task/getTaskById.task.slice';
+import { useLocation } from 'react-router-dom';
+import TaskState from './TaskState';
 
 const TaskForm = () => {
-
-    const [task, setTask] = useState<Task>({
-        title: "",
-        description: "",
-        category: undefined,
-    });
+    const { state }: { state: Task } = useLocation();
+    console.log({state})
+    const [task, setTask] = TaskState()
     const [errors, setErrors] = useState<TaskError>({
         title: '',
         description: '',
@@ -30,10 +24,10 @@ const TaskForm = () => {
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (validateForm({ task, setErrors })) {
-            console.log({ id: 1, ...task, date: formatDate(new Date()) })
+            console.log({ id: 1, ...task })
             addEditTaskSuccess("new task added successfully")
             setTask({
-                title: "", description: "", category: undefined
+                title: "", description: "", category: ""
             })
         } else {
             console.log('task Form validation failed');

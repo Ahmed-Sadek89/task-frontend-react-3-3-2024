@@ -34,7 +34,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 }));
 
 const Layout = () => {
-  CheckNotAuth()
+  CheckNotAuth();
   const [open, setOpen] = React.useState(false);
   const handleDrawerOpen = () => {
     setOpen(true);
