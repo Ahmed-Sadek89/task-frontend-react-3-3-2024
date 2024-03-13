@@ -2,25 +2,23 @@ import { Box, Button, Container, Typography } from '@mui/material'
 import AddCardOutlinedIcon from '@mui/icons-material/AddCardOutlined';
 import { useState } from 'react';
 import { boxContainer, addTaskForm, buttonBoxStyle, buttonStyle, homeTitle } from '../../global/globalStyle';
-import TitleTextField from './TitleTextField';
-import DescriptionTextField from './DiscriptionTextField';
-import CategoryTextField from './CategoryTextField';
+import TitleTextField from './components/TitleTextField';
+import DescriptionTextField from './components/DiscriptionTextField';
+import CategoryTextField from './components/CategoryTextField';
 import { addEditTaskSuccess } from '../../global/sweetAlert';
-import { validateForm } from './validationForm';
+import { validateForm } from './hooks/validationForm';
 import { Task, TaskError } from '../../Types/Tasks';
 import { useLocation } from 'react-router-dom';
-import TaskState from './TaskState';
+import TaskState from './hooks/TaskState';
 
 const TaskForm = () => {
     const { state }: { state: Task } = useLocation();
-    console.log({state})
     const [task, setTask] = TaskState()
     const [errors, setErrors] = useState<TaskError>({
         title: '',
         description: '',
         category: ''
     });
-
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (validateForm({ task, setErrors })) {
@@ -37,7 +35,7 @@ const TaskForm = () => {
         <Container>
             <Box sx={boxContainer}>
                 <Typography sx={homeTitle} >
-                    Add your new task.
+                    {state ? `Edit the task number #${state.id}` :"Add your new task."}
                 </Typography>
                 <Container>
                     <Box component='form' sx={addTaskForm} onSubmit={e => handleSubmit(e)}>
@@ -48,12 +46,12 @@ const TaskForm = () => {
                             <Button
                                 type='submit'
                                 variant='contained'
-                                color={"success"}
+                                color={state ? "info" :"success"}
                                 sx={buttonStyle}
                             >
                                 <AddCardOutlinedIcon />
                                 <Typography variant='body1'>
-                                    Add Task
+                                    {state ? "Edit the ": "Add a "} Task
                                 </Typography>
                             </Button>
                         </Box>

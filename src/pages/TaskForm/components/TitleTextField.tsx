@@ -1,7 +1,7 @@
 import { Box, TextField, Typography } from '@mui/material'
-import { textFieldStyle } from '../../global/globalStyle'
+import { textFieldStyle } from '../../../global/globalStyle'
 import React from 'react'
-import { Task } from '../../Types/Tasks'
+import { Task } from '../../../Types/Tasks'
 
 
 type Props = {

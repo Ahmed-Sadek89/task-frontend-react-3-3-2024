@@ -1,4 +1,4 @@
-import { Task, TaskError } from "../../Types/Tasks";
+import { Task, TaskError } from "../../../Types/Tasks";
 
 type props = {
     task: Task,
@@ -24,7 +24,7 @@ export const validateForm = ({ task, setErrors }: props) => {
         valid = false;
     }
 
-    if (task.category === undefined) {
+    if (task.description?.trim()  === "") {
         newErrors.category = 'category is required';
         valid = false;
     }

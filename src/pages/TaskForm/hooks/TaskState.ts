@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Task } from '../../Types/Tasks'
+import { Task } from '../../../Types/Tasks'
 import { useLocation } from 'react-router-dom';
 
 const TaskState = () => {

@@ -1,7 +1,7 @@
 import { Box, MenuItem, TextField, Typography } from '@mui/material'
-import { selectCategoryStyle } from '../../global/globalStyle'
+import { selectCategoryStyle } from '../../../global/globalStyle'
 import React from 'react'
-import { Task } from '../../Types/Tasks';
+import { Task } from '../../../Types/Tasks';
 
 
 type Props = {
@@ -29,7 +29,13 @@ const CategoryTextField = ({ task, setTask, categoryErrors }: Props) => {
                 })}
             >
                 {
-                    categories.map((index) => (<MenuItem key={index} value={index}> {index} </MenuItem>))
+                    categories.map((index) => (
+                        <MenuItem
+                            key={index}
+                            value={index}
+                            sx={{ textTransform: "capitalize" }}
+                        > {index.toLowerCase()} </MenuItem>
+                    ))
                 }
             </TextField>
             {
